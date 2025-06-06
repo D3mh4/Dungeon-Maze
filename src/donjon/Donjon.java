@@ -1,6 +1,7 @@
 package donjon;
 
 import physique.*;
+import pile.*;
 
 import java.util.Random;
 
@@ -85,6 +86,23 @@ public class Donjon {
     }
     
     public void produireLabyrinthe() {
+    	
+    	PileSChainee<Case> pile = new PileSChainee<Case>(nbrLignes*nbrColonnes);
+    	pile.empiler(caseDepart);
+    	
+    	while(!pile.estVide()) {
+    		Case caseActuel = pile.regarder();
+    		Position posActuel = caseActuel.getPosition();
+    		caseActuel.setDeveloppe(true);
+    		
+    		if(getNbVoisinsNonDeveloppe(posActuel) > 0) {
+    			Position posVoisin = getVoisinLibreAlea(posActuel);
+    			Direction.positionADirection(posVoisin.soustrairePos(posActuel));
+    		}
+    		
+    		
+    	}
+    	
     	
     }
     

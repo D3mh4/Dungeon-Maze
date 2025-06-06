@@ -20,6 +20,10 @@ public class Case {
 			voisins = new Case[4];
 		}
 		
+		public Position getPosition() {
+			return pos.clone();
+		}
+		
 		public boolean isDecouverte() {
 			return decouverte;
 		}
