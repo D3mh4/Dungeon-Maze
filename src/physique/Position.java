@@ -31,20 +31,19 @@ public class Position {
 		this.j = j;
 	}
 	
-	//À confirmer pour le paramètre (tableau, int ou double | position)
-	public void additionnerPos(int[] pos) {
-		this.i += pos[0];
-		this.j += pos[1];
+	public void additionnerPos(Position pos) {
+		this.i += pos.getI();
+		this.j += pos.getJ();
 	}
 	
-	public void soustrairePos(int[] pos) {
-		this.i -= pos[0];
-		this.j -= pos[1];
+	public void soustrairePos(Position pos) {
+		this.i -= pos.getI();
+		this.j -= pos.getJ();
 	}
 	
-	public void multiplierPos(int[] pos) {
-		this.i *= pos[0];
-		this.j *= pos[1];
+	public void multiplierPos(double posI, double posJ) {
+		this.i *= posI;
+		this.j *= posJ;
 	}
 	
 	@Override

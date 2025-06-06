@@ -10,7 +10,7 @@ public class Direction {
 	public static final int GAUCHE = 2;
 	public static final int DROITE = 3;
 	
-	public int directionOpposee(int direction) {
+	public static int directionOpposee(int direction) {
 		switch(direction) {
 			case HAUT : 
 				return BAS;
@@ -21,11 +21,12 @@ public class Direction {
 			case DROITE :
 				return GAUCHE;
 			default : 
+				System.out.print("Erreur : la direction demandé n'est pas valide.");
 				return -1;
 		}
 	}
 	
-	public Position directionAPosition(int direction){
+	public static Position directionAPosition(int direction){
 		switch(direction) {
 			case HAUT :
 				return new Position(-1,0);
@@ -40,7 +41,7 @@ public class Direction {
 		}
 	}
 	
-	public int positionADirection(Position pos) {
+	public static int positionADirection(Position pos) {
 
 		if(pos.getI()==-1 && pos.getJ()==0) {
 			return HAUT;
@@ -51,11 +52,12 @@ public class Direction {
 		} else if(pos.getI()==0 && pos.getJ()==1) {
 			return DROITE;
 		} else {
+			System.out.print("Erreur : la direction demandé n'est pas valide.");
 			return -1;
 		}
 	}
 	
-	public int obtenirDirAlea() {
+	public static int obtenirDirAlea() {
 		return rand.nextInt(4);
 	}
 	

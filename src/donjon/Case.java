@@ -17,6 +17,7 @@ public class Case {
 			decouverte = false;
 			fin = false;
 			developpe = false;
+			voisins = new Case[4];
 		}
 		
 		public boolean isDecouverte() {
@@ -58,7 +59,7 @@ public class Case {
 					+ "Decouverte ? %b, Fin ? %b, "
 					+ "Developpé par l'alghorithme ? %b, "
 					+ "Haut : {%d,%d}, Bas : {%d,%d}, Gauche : {%d,%d}, Droite : {%d,%d} "
-					, pos, decouverte, fin, developpe, voisins[0].pos.getI(), voisins[0].pos.getJ(), voisins[1].pos.getI(), voisins[1].pos.getJ(), voisins[2].pos.getI(), voisins[2].pos.getJ(), voisins[3].pos.getI(), voisins[3].pos.getJ());
+					, pos.getJ(), pos.getI(), decouverte, fin, developpe, voisins[0].pos.getI(), voisins[0].pos.getJ(), voisins[1].pos.getI(), voisins[1].pos.getJ(), voisins[2].pos.getI(), voisins[2].pos.getJ(), voisins[3].pos.getI(), voisins[3].pos.getJ());
 			}
 		
 		

@@ -1,6 +1,6 @@
 package donjon;
 
-import physique.Position;
+import physique.*;
 
 import java.util.Random;
 
@@ -35,13 +35,60 @@ public class Donjon {
 
     }
 
-    public void getNbVoisinsNonDeveloppe(physique.Position pos){
+    // à tester plus tard
+    public int getNbVoisinsNonDeveloppe(Position pos){
         int compteur = 0;
-
+        Position voisine;
+        
         for (int i = 0; i < 4; i++) {
-            if(){
-
+        	voisine = pos.clone();
+        	voisine.additionnerPos(Direction.directionAPosition(i));
+        	
+            if(voisine.getI() < 10 && voisine.getI() >= 0 && voisine.getJ() < 10 && voisine.getJ() >= 0){
+            	if(!cases[voisine.getJ()][voisine.getI()].isDeveloppe())
+            		compteur++;
             }
         }
+        
+        return compteur;
     }
+    
+    public Position getVoisinAlea(Position pos) {
+    	Position voisine;
+    	
+    	do {
+    		voisine = pos.clone();
+    		voisine.additionnerPos(Direction.directionAPosition(rand.nextInt(4)));
+    		
+    		System.out.printf("posI de voisine : %d, posJ de voisine : %d\n", voisine.getI(), voisine.getJ());
+    		
+    	} while(voisine.getI() >= 10 || voisine.getI() < 0 || voisine.getJ() >= 10 || voisine.getJ() < 0);
+    	
+		return voisine;
+    }
+    
+    // à tester plus tard
+    public Position getVoisinLibreAlea(Position pos) {
+    	Position voisine;
+    	
+    	do {
+    		
+	    	do {
+	    		voisine = pos.clone();
+	    		voisine.additionnerPos(Direction.directionAPosition(rand.nextInt(4)));
+	    		
+	    	} while(voisine.getI() >= 10 || voisine.getI() < 0 || voisine.getJ() >= 10 || voisine.getJ() < 0);
+	    	
+    	} while (cases[voisine.getJ()][voisine.getI()].isDeveloppe());
+    	
+		return voisine;
+    }
+    
+    public void produireLabyrinthe() {
+    	
+    }
+    
+    
+    
+    
 }
