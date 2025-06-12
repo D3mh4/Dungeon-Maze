@@ -16,7 +16,15 @@ public class Donjon {
 
     public Donjon() {
         cases= new Case[nbrLignes][nbrColonnes];
+        
+        for(int i = 0; i < cases.length; i++)
+        	for (int j = 0; j < cases[i].length; j++)
+        		cases[i][j] = new Case(new Position(i,j));
+        
         caseDepart = cases[rand.nextInt(nbrLignes)][rand.nextInt(nbrColonnes)];
+        
+        this.produireLabyrinthe();
+        this.caseFin.setFin(true);
     }
 
     public Case getCaseFin() {
@@ -97,7 +105,17 @@ public class Donjon {
     		
     		if(getNbVoisinsNonDeveloppe(posActuel) > 0) {
     			Position posVoisin = getVoisinLibreAlea(posActuel);
-    			Direction.positionADirection(posVoisin.soustrairePos(posActuel));
+    			Case caseVoisin = cases[posVoisin.getJ()][posVoisin.getI()];
+    			posVoisin.soustrairePos(posActuel);
+    			
+    			cases[caseActuel.getPosition().getJ()][caseActuel.getPosition().getI()].setVoisin(caseVoisin, Direction.positionADirection(posVoisin));
+    			cases[caseVoisin.getPosition().getJ()][caseVoisin.getPosition().getI()].setVoisin(caseActuel, Direction.directionOpposee(Direction.positionADirection(posActuel)));
+    			
+    			pile.empiler(caseVoisin);
+    			
+    			this.caseFin = (Case)pile.regarder();
+    		}else {
+    			pile.depiler();
     		}
     		
     		

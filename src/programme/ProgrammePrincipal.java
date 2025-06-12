@@ -1,22 +1,20 @@
 package programme;
 
-import physique.*;
-import pile.*;
-import donjon.*;
-import java.util.Arrays;
 
-public class ProgrammePrincipal {
+public class programmePrincipal {
 
-	public static void main(String[] args) {
-
-		Donjon donjon = new Donjon();
-		Position pos = new Position(9,6);
-		
-		Position nouvellePos = new Position(donjon.getVoisinAlea(pos));
-		
-		System.out.println(nouvellePos.getI());
-		System.out.println(nouvellePos.getJ());
-		
-	}
-
+	/**
+	 * Programme principal, lance la vue du programme
+	 * 
+	 * @param args, inutilisé
+	 */
+    public static void main(String[] args){
+    	
+    	// lance le view-controller (à compléter)
+    	Thread t = new Thread(new vue.CadrePrincipal());
+    	t.start();
+    	
+    }
+    
 }
+

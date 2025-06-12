@@ -19,7 +19,7 @@ package donjon;
  * On peut revenir aux configurations initiales à l'aide de remiseAZero
  * 
  * @author Fred Simard | ETS
- * @version Hiver 2022 - Devoir 1
+ * @version Hiver 2022 - TP2
  */
 
 public class Configuration {
