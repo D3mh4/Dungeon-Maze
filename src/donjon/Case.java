@@ -20,7 +20,7 @@ public class Case {
 			voisins = new Case[4];
 		}
 		
-		public Position getPosition() {
+		public Position getPos() {
 			return pos.clone();
 		}
 		
@@ -32,7 +32,7 @@ public class Case {
 			this.decouverte = decouverte;
 		}
 
-		public boolean isFin() {
+		public boolean getFin() {
 			return fin;
 		}
 

@@ -100,7 +100,7 @@ public class EnginDessinDonjon {
 		// trace les murs
 		for(int i=0;i<cases.length;i++){
 			for(int j=0;j<cases[i].length;j++){
-				dessinerCase(g2,convertirIJaPixel(cases[i][j].getPosition()), cases[i][j]);
+				dessinerCase(g2,convertirIJaPixel(cases[i][j].getPos()), cases[i][j]);
 			}
 		}
 		
@@ -123,7 +123,7 @@ public class EnginDessinDonjon {
 		int xDroit= pos.getJ() + LONGUEUR_CASE/2;
 
 		// si la case est la fin, l'affiche en bleu
-		if(cetteCase.isFin()){
+		if(cetteCase.getFin()){
 			g2.setColor(Color.BLUE);
 			System.out.println(""+cetteCase.toString());
 			g2.fillRect(xGauche, yTop, LONGUEUR_CASE, LONGUEUR_CASE);

@@ -19,7 +19,7 @@ public class Donjon {
         
         for(int i = 0; i < cases.length; i++)
         	for (int j = 0; j < cases[i].length; j++)
-        		cases[i][j] = new Case(new Position(i,j));
+        		cases[j][i] = new Case(new Position(j,i));
         
         caseDepart = cases[rand.nextInt(nbrLignes)][rand.nextInt(nbrColonnes)];
         
@@ -97,28 +97,37 @@ public class Donjon {
     	
     	PileSChainee<Case> pile = new PileSChainee<Case>(nbrLignes*nbrColonnes);
     	pile.empiler(caseDepart);
+    	int cpt = 0;
     	
     	while(!pile.estVide()) {
     		Case caseActuel = pile.regarder();
-    		Position posActuel = caseActuel.getPosition();
+    		Position posActuel = caseActuel.getPos();
     		caseActuel.setDeveloppe(true);
     		
     		if(getNbVoisinsNonDeveloppe(posActuel) > 0) {
+        		
+    			System.out.println(getNbVoisinsNonDeveloppe(posActuel));
     			Position posVoisin = getVoisinLibreAlea(posActuel);
     			Case caseVoisin = cases[posVoisin.getJ()][posVoisin.getI()];
+    			
+    			System.out.println(cpt + " : CaseActuel : " + caseActuel.getPos().getJ() + ", " + caseActuel.getPos().getI());
+
     			posVoisin.soustrairePos(posActuel);
     			
-    			cases[caseActuel.getPosition().getJ()][caseActuel.getPosition().getI()].setVoisin(caseVoisin, Direction.positionADirection(posVoisin));
-    			cases[caseVoisin.getPosition().getJ()][caseVoisin.getPosition().getI()].setVoisin(caseActuel, Direction.directionOpposee(Direction.positionADirection(posActuel)));
+    			cases[caseActuel.getPos().getJ()][caseActuel.getPos().getI()].setVoisin(caseVoisin, Direction.positionADirection(posVoisin.clone()));
+    			cases[caseVoisin.getPos().getJ()][caseVoisin.getPos().getI()].setVoisin(caseActuel, Direction.directionOpposee(Direction.positionADirection(posVoisin.clone())));
+    			
+    			cpt++;
     			
     			pile.empiler(caseVoisin);
+    			caseActuel = pile.regarder();
+        		posActuel = caseActuel.getPos();
+        		caseActuel.setDeveloppe(true);
     			
     			this.caseFin = (Case)pile.regarder();
     		}else {
     			pile.depiler();
     		}
-    		
-    		
     	}
     	
     	

@@ -42,8 +42,8 @@ public class Direction {
 	}
 	
 	public static int positionADirection(Position pos) {
-
-		if(pos.getI()==-1 && pos.getJ()==0) {
+		
+		if(pos.getI() == -1 && pos.getJ() == 0) {
 			return HAUT;
 		} else if(pos.getI()==1 && pos.getJ()==0) {
 			return BAS;
