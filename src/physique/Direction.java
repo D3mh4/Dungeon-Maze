@@ -1,4 +1,23 @@
 package physique;
+
+/**
+ * Classe utilitaire représentant les directions cardinales dans un labyrinthe.
+ * 
+ * Fournit des constantes pour représenter les directions (HAUT, BAS, GAUCHE, DROITE),
+ * ainsi que des méthodes utilitaires pour :
+ * - Obtenir la direction opposée à une direction donnée.
+ * - Convertir une direction en déplacement de position.
+ * - Déduire une direction à partir d'une différence de positions.
+ * - Obtenir une direction aléatoire.
+ * 
+ * Utilisée pour naviguer entre les cases d'un labyrinthe dans {@link donjon.Donjon}.
+ * 
+ * @author Ahmed El Moudden
+ * @author Marie-Claire Lajeunesse
+ * @author Amine Abdaoui
+ * @version Été 2025 - TP1
+ */
+
 import java.util.Random;
 
 public class Direction {

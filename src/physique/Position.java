@@ -1,5 +1,21 @@
 package physique;
 
+/**
+ * Représente une position dans une grille bidimensionnelle (ligne j, colonne i).
+ * 
+ * Fournit des méthodes pour :
+ * - Accéder et modifier les coordonnées.
+ * - Effectuer des opérations vectorielles de base : addition, soustraction, multiplication.
+ * - Cloner et comparer des positions.
+ * 
+ * Utilisée notamment pour représenter les coordonnées des cases dans un labyrinthe.
+ * 
+ * @author Ahmed El Moudden
+ * @author Marie-Claire Lajeunesse
+ * @author Amine Abdaoui
+ * @version Été 2025 - TP1
+ */
+
 public class Position {
 
 	private int i;

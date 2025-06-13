@@ -1,5 +1,23 @@
 package donjon;
 
+/**
+ * Représente un donjon sous forme de labyrinthe généré aléatoirement.
+ * 
+ * Cette classe génère un labyrinthe en utilisant une pile et une approche
+ * de parcours en profondeur (DFS). Chaque case du labyrinthe est liée à ses
+ * voisines développées, formant un graphe connexe sans cycles (arbre couvrant).
+ * 
+ * Fonctionnalités principales :
+ * - Génération d'un labyrinthe procédural.
+ * - Sélection aléatoire d'une case de départ et d'une case de fin.
+ * - Accès à des informations utiles comme les cases, la position aléatoire,
+ *   et les voisins non développés.
+ * 
+ * @author Ahmed El Moudden
+ * @author Marie-Claire Lajeunesse
+ * @version Été 2025 - TP1
+ */
+
 import physique.*;
 import pile.*;
 
@@ -96,7 +114,7 @@ public class Donjon {
     
     public void produireLabyrinthe() {
     	
-    	PileSChainee<Case> pile = new PileSChainee<Case>(nbrLignes*nbrColonnes);
+    	PileSChainee<Case> pile = new PileSChainee<Case>();
     	pile.empiler(caseDepart);
     	int cpt = 0;
     	

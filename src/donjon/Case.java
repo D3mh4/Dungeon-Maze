@@ -1,5 +1,24 @@
 package donjon;
 
+/**
+ * Représente une case dans le labyrinthe.
+ * 
+ * Chaque case possède une position, des états (découverte, développée, fin),
+ * et des références vers ses voisins dans les quatre directions cardinales.
+ * 
+ * Fonctionnalités principales :
+ * - Suivi de l’état de la case (explorée, fin, développée).
+ * - Gestion des voisins selon les directions (haut, bas, gauche, droite).
+ * - Représentation textuelle de la case et de ses connexions.
+ * 
+ * Utilisée dans la génération du labyrinthe dans {@link donjon.Donjon}.
+ * 
+ * @author Ahmed El Moudden
+ * @author Marie-Claire Lajeunesse
+ * @author Amine Abdaoui
+ * @version Été 2025 - TP1
+ */
+
 import java.util.Arrays;
 
 import physique.Position;
