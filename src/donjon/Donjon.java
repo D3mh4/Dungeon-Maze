@@ -53,9 +53,10 @@ public class Donjon {
         	voisine = pos.clone();
         	voisine.additionnerPos(Direction.directionAPosition(i));
         	
-            if(voisine.getI() < 10 && voisine.getI() >= 0 && voisine.getJ() < 10 && voisine.getJ() >= 0){
-            	if(!cases[voisine.getJ()][voisine.getI()].isDeveloppe())
+            if(voisine.getI() < nbrColonnes && voisine.getI() >= 0 && voisine.getJ() < nbrLignes && voisine.getJ() >= 0){
+            	if(!cases[voisine.getJ()][voisine.getI()].isDeveloppe()) {
             		compteur++;
+            	}
             }
         }
         
@@ -71,7 +72,7 @@ public class Donjon {
     		
     		System.out.printf("posI de voisine : %d, posJ de voisine : %d\n", voisine.getI(), voisine.getJ());
     		
-    	} while(voisine.getI() >= 10 || voisine.getI() < 0 || voisine.getJ() >= 10 || voisine.getJ() < 0);
+    	} while(voisine.getI() >= nbrColonnes || voisine.getI() < 0 || voisine.getJ() >= nbrLignes || voisine.getJ() < 0);
     	
 		return voisine;
     }
@@ -86,7 +87,7 @@ public class Donjon {
 	    		voisine = pos.clone();
 	    		voisine.additionnerPos(Direction.directionAPosition(rand.nextInt(4)));
 	    		
-	    	} while(voisine.getI() >= 10 || voisine.getI() < 0 || voisine.getJ() >= 10 || voisine.getJ() < 0);
+	    	} while(voisine.getI() >= nbrColonnes || voisine.getI() < 0 || voisine.getJ() >= nbrLignes || voisine.getJ() < 0);
 	    	
     	} while (cases[voisine.getJ()][voisine.getI()].isDeveloppe());
     	
@@ -106,25 +107,19 @@ public class Donjon {
     		
     		if(getNbVoisinsNonDeveloppe(posActuel) > 0) {
         		
-    			System.out.println(getNbVoisinsNonDeveloppe(posActuel));
     			Position posVoisin = getVoisinLibreAlea(posActuel);
     			Case caseVoisin = cases[posVoisin.getJ()][posVoisin.getI()];
-    			
-    			System.out.println(cpt + " : CaseActuel : " + caseActuel.getPos().getJ() + ", " + caseActuel.getPos().getI());
-
+    		
     			posVoisin.soustrairePos(posActuel);
     			
-    			cases[caseActuel.getPos().getJ()][caseActuel.getPos().getI()].setVoisin(caseVoisin, Direction.positionADirection(posVoisin.clone()));
-    			cases[caseVoisin.getPos().getJ()][caseVoisin.getPos().getI()].setVoisin(caseActuel, Direction.directionOpposee(Direction.positionADirection(posVoisin.clone())));
+    			System.out.println(cpt + " : CaseActuel : " + caseActuel.getPos().getJ() + ", " + caseActuel.getPos().getI() + " : Direction : " + posVoisin.getJ() + ", " + posVoisin.getI() + " ( " + Direction.positionADirection(posVoisin.clone())+ " ) ");
     			
-    			cpt++;
+    			cases[caseActuel.getPos().getJ()][caseActuel.getPos().getI()].setVoisin(caseVoisin, Direction.positionADirection(posVoisin));
+    			cases[caseVoisin.getPos().getJ()][caseVoisin.getPos().getI()].setVoisin(caseActuel, Direction.directionOpposee(Direction.positionADirection(posVoisin)));
     			
     			pile.empiler(caseVoisin);
-    			caseActuel = pile.regarder();
-        		posActuel = caseActuel.getPos();
-        		caseActuel.setDeveloppe(true);
-    			
-    			this.caseFin = (Case)pile.regarder();
+    			cpt++;
+    			this.caseFin = pile.regarder();
     		}else {
     			pile.depiler();
     		}

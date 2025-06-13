@@ -59,12 +59,22 @@ public class Case {
 		//
 		@Override
 		public String toString() {
-			return String.format("Position : {%d,%d}, "
-					+ "Decouverte ? %b, Fin ? %b, "
-					+ "Developpé par l'alghorithme ? %b, "
-					+ "Haut : {%d,%d}, Bas : {%d,%d}, Gauche : {%d,%d}, Droite : {%d,%d} "
-					, pos.getJ(), pos.getI(), decouverte, fin, developpe, voisins[0].pos.getI(), voisins[0].pos.getJ(), voisins[1].pos.getI(), voisins[1].pos.getJ(), voisins[2].pos.getI(), voisins[2].pos.getJ(), voisins[3].pos.getI(), voisins[3].pos.getJ());
-			}
+		    String[] voisinsStr = new String[4];
+
+		    for (int i = 0; i < 4; i++) {
+		        if (voisins[i] != null && voisins[i].pos != null) {
+		            voisinsStr[i] = String.format("{%d,%d}", voisins[i].pos.getI(), voisins[i].pos.getJ());
+		        } else {
+		            voisinsStr[i] = "{null}";
+		        }
+		    }
+
+		    return String.format(
+		        "Position : {%d,%d}, Decouverte ? %b, Fin ? %b, Developpé par l'alghorithme ? %b, Haut : %s, Bas : %s, Gauche : %s, Droite : %s",
+		        pos.getJ(), pos.getI(), decouverte, fin, developpe,
+		        voisinsStr[0], voisinsStr[1], voisinsStr[2], voisinsStr[3]
+		    );
+		    }
 		
 		
 		

@@ -37,19 +37,20 @@ public class Direction {
 			case DROITE : 
 				return new Position(0,1);
 			default :
+				System.out.print("Erreur : la direction demandé n'est pas valide.");
 				return new Position(0,0);
 		}
 	}
 	
 	public static int positionADirection(Position pos) {
 		
-		if(pos.getI() == -1 && pos.getJ() == 0) {
+		if(pos.getJ() == -1 && pos.getI() == 0) {
 			return HAUT;
-		} else if(pos.getI()==1 && pos.getJ()==0) {
+		} else if(pos.getJ()==1 && pos.getI()==0) {
 			return BAS;
-		} else if(pos.getI()==0 && pos.getJ()==-1) {
+		} else if(pos.getJ()==0 && pos.getI()==-1) {
 			return GAUCHE;
-		} else if(pos.getI()==0 && pos.getJ()==1) {
+		} else if(pos.getJ()==0 && pos.getI()==1) {
 			return DROITE;
 		} else {
 			System.out.print("Erreur : la direction demandé n'est pas valide.");

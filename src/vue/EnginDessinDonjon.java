@@ -115,12 +115,12 @@ public class EnginDessinDonjon {
 	private void dessinerCase(Graphics2D g2, Position pos, Case cetteCase){
 
 		// point haut-gauche
-		int yTop = pos.getI() - LONGUEUR_CASE/2;
-		int xGauche = pos.getJ() - LONGUEUR_CASE/2;
+		int yTop = pos.getJ() - LONGUEUR_CASE/2;
+		int xGauche = pos.getI() - LONGUEUR_CASE/2;
 
 		// point bas-droit
-		int yBas = pos.getI() + LONGUEUR_CASE/2;
-		int xDroit= pos.getJ() + LONGUEUR_CASE/2;
+		int yBas = pos.getJ() + LONGUEUR_CASE/2;
+		int xDroit= pos.getI() + LONGUEUR_CASE/2;
 
 		// si la case est la fin, l'affiche en bleu
 		if(cetteCase.getFin()){
