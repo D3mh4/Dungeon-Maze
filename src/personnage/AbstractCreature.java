@@ -8,6 +8,5 @@ public abstract class AbstractCreature extends AbstractPersonnage {
 		super(pos);
 	}
 
-	
-	
+	public abstract boolean isVivant();
 }

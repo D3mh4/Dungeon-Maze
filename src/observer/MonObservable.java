@@ -10,7 +10,7 @@ import java.util.ArrayList;
 
 public abstract class MonObservable {
 
-	// liste des observers
+// liste des observers
 	ArrayList<MonObserver> observers = new ArrayList<MonObserver>();
 	
 	/**
@@ -28,6 +28,10 @@ public abstract class MonObservable {
 		for(MonObserver observer:observers){
 			observer.avertir();
 		}
+	}
+
+	public ArrayList<MonObserver> getObservers() {
+		return observers;
 	}
 		
 }

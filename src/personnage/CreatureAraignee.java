@@ -13,5 +13,10 @@ public class CreatureAraignee extends AbstractCreature {
 		super.seDeplacer(direction);
 		super.seDeplacer(direction);
 	}
+
+	@Override
+	public boolean isVivant() {
+		return isVivant;
+	}
 	
 }

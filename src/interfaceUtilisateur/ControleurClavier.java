@@ -18,6 +18,7 @@ import java.util.Observable;
 
 import modele.PlanDeJeu;
 import physique.Direction;
+import personnage.*;
 
 public class ControleurClavier implements KeyListener{
 
@@ -39,34 +40,35 @@ public class ControleurClavier implements KeyListener{
 	@Override
 	public void keyPressed(KeyEvent e) {
 		
-		/*
+		
 		// obtient une référence au joueur courant
 		Joueur joueurControlle =  planDeJeu.getJoueur();
-		
+		String msgh;
 		// s'assure qu'un joueur a été initialisé
 		if(joueurControlle != null){
 			
 			int keyCode = e.getKeyCode();
-			
+			msgh = KeyEvent.getKeyText(keyCode);
 			// gestion de l'action en fonction de l'événement clavier
 			switch(KeyEvent.getKeyText(keyCode)){
 			
-				case "Up":
-					
+				case "Haut":
+					     	planDeJeu.getJoueur().seDeplacer(0);
+					     	System.out.println("HAUT");
 					break;
-				case "Down":
-					
+				case "Bas":
+							planDeJeu.getJoueur().seDeplacer(1);
 					break;
-				case "Left":
-
+				case "Gauche":
+							planDeJeu.getJoueur().seDeplacer(2);
 					break;
-				case "Right":
-
+				case "Droite":
+							planDeJeu.getJoueur().seDeplacer(3);
 					break;
 			
 			}
 		}
-		*/
+		
 	}
 
 	@Override

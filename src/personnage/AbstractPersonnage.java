@@ -21,6 +21,12 @@ public abstract class AbstractPersonnage extends MonObservable {
 	// propriétés d'un personnage
 	protected Position pos;
 	protected Case caseCourante;
+	
+	protected boolean isVivant = true;
+
+	public boolean isVivant() {
+		return isVivant;
+	}
 
 	/**
 	 * constructeur
