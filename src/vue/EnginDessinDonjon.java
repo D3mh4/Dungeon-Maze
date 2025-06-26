@@ -71,9 +71,9 @@ public class EnginDessinDonjon {
 	public void dessinerCreatures(Graphics2D g2, Vector<AbstractCreature> creatures) {
 		for (int i = 0; i < creatures.size(); i++) {
 			AbstractCreature creature = creatures.get(i);
-			//if(creature.getCase().isDecouverte() && creature.isVivant()){
+			if(creature.getCase().isDecouverte() && creature.isVivant()){
 				dessinerCreature(g2, convertirIJaPixel(creature.getPos()), creature);
-			//}
+			}
 		}
 	}
 
@@ -139,7 +139,7 @@ public class EnginDessinDonjon {
 		}
 
 		// si cette case est découvert, affiche les murs selon le cas
-		// if(cetteCase.getDecouverte()){
+		 if(cetteCase.isDecouverte()){
 
 		g2.setColor(Color.GRAY);
 		g2.setStroke(new BasicStroke(7));
@@ -157,10 +157,10 @@ public class EnginDessinDonjon {
 		if (cetteCase.getVoisin(Direction.GAUCHE) == null) {
 			g2.drawLine(xGauche, yTop, xGauche, yBas);
 		}
-		/*
-		 * }else{ g2.setColor(Color.BLACK); g2.fillRect(xGauche, yTop, LONGUEUR_CASE,
-		 * LONGUEUR_CASE); }
-		 */
+
+		 }else{ g2.setColor(Color.BLACK); g2.fillRect(xGauche, yTop, LONGUEUR_CASE,
+		  LONGUEUR_CASE); }
+
 
 	}
 

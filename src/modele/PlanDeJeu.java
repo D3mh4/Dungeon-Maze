@@ -166,7 +166,14 @@ public class PlanDeJeu extends MonObservable implements MonObserver, Runnable {
 		joueur = new Joueur(donjon.getCaseDepart().getPos());
 		
 		joueur.setCase(donjon.getCaseDepart());
-		
+		donjon.getCaseDepart().setDecouverte(true);
+		for (int i = 0; i < 4; i++) {
+			if(donjon.getCaseDepart().getVoisin(i) != null){
+				Case voisin = donjon.getCaseDepart().getVoisin(i);
+				voisin.setDecouverte(true);
+			}
+		}
+
 		joueur.attacherObserver(this);
 
 		joueur.setCase(
