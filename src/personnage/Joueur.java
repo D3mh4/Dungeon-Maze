@@ -1,5 +1,14 @@
 package personnage;
 
+/**
+ * Classe d'un joueur
+ * 
+ * @author Ahmed El Moudden
+ * @author Marie-Claire Lajeunesse
+ * @author Amine Aabdaoui
+ * @version Été 2025 - TP1
+ */
+
 import donjon.Case;
 import physique.Position;
 
@@ -11,7 +20,7 @@ public class Joueur extends AbstractPersonnage {
 	}
 
 	/**
-	 * Sur-définition de la méthode seDépalcer pour afficher seulement les cases découvertes
+	 * Sur-définition de la méthode seDéplacer pour afficher seulement les cases découvertes
 	 *
 	 * @param direction, entier qui représente la direction du déplacement
 	 */
