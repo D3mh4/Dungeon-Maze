@@ -1,7 +1,9 @@
 package personnage;
 
 /**
- * Classe d'un dragon
+ * Classe d'un dragon.
+ * 
+ * Représente une créature dragon dans le jeu.
  * 
  * @author Ahmed El Moudden
  * @author Marie-Claire Lajeunesse
@@ -13,13 +15,23 @@ import physique.Position;
 
 public class CreatureDragon extends AbstractCreature {
 
-	public CreatureDragon(Position pos) {
-		super(pos);
-	}
+    /**
+     * Constructeur du dragon.
+     * 
+     * @param pos La position initiale du dragon dans le labyrinthe.
+     */
+    public CreatureDragon(Position pos) {
+        super(pos);
+    }
 
-	@Override
-	public boolean isVivant() {
-		return isVivant;
-	}
-	
+    /**
+     * Indique si le dragon est vivant.
+     * 
+     * @return true si le dragon est vivant, false sinon.
+     */
+    @Override
+    public boolean isVivant() {
+        return isVivant; // Champ protégé hérité d'AbstractPersonnage
+    }
+    
 }

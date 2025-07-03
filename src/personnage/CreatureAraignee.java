@@ -1,7 +1,9 @@
 package personnage;
 
 /**
- * Classe d'une araignée
+ * Classe d'une araignée.
+ * 
+ * Représente une créature araignée qui se déplace deux fois plus vite que les autres.
  * 
  * @author Ahmed El Moudden
  * @author Marie-Claire Lajeunesse
@@ -13,19 +15,35 @@ import physique.Position;
 
 public class CreatureAraignee extends AbstractCreature {
 
-	public CreatureAraignee(Position pos) {
-		super(pos);
-	}
-	
-	@Override
-	public void seDeplacer(int direction){
-		super.seDeplacer(direction);
-		super.seDeplacer(direction);
-	}
+    /**
+     * Constructeur de l'araignée.
+     * 
+     * @param pos La position initiale de l'araignée dans le labyrinthe.
+     */
+    public CreatureAraignee(Position pos) {
+        super(pos);
+    }
+    
+    /**
+     * Déplace l'araignée dans une direction donnée.
+     * L'araignée effectue un déplacement en deux cases.
+     * 
+     * @param direction La direction du déplacement.
+     */
+    @Override
+    public void seDeplacer(int direction) {
+        super.seDeplacer(direction); // Premier déplacement
+        super.seDeplacer(direction); // Deuxième déplacement
+    }
 
-	@Override
-	public boolean isVivant() {
-		return isVivant;
-	}
-	
+    /**
+     * Indique si l'araignée est vivante.
+     * 
+     * @return true si l'araignée est vivante, false sinon.
+     */
+    @Override
+    public boolean isVivant() {
+        return isVivant; // Champ protégé hérité d'AbstractPersonnage
+    }
+    
 }

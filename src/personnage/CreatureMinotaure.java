@@ -1,7 +1,9 @@
 package personnage;
 
 /**
- * Classe d'un minotaure
+ * Classe d'un minotaure.
+ * 
+ * Représente une créature minotaure dans le jeu.
  * 
  * @author Ahmed El Moudden
  * @author Marie-Claire Lajeunesse
@@ -13,13 +15,23 @@ import physique.Position;
 
 public class CreatureMinotaure extends AbstractCreature {
 
-	public CreatureMinotaure(Position pos) {
-		super(pos);
-	}
+    /**
+     * Constructeur du minotaure.
+     * 
+     * @param pos La position initiale du minotaure dans le labyrinthe.
+     */
+    public CreatureMinotaure(Position pos) {
+        super(pos);
+    }
 
-	@Override
-	public boolean isVivant() {
-		return isVivant;
-	}
-	
+    /**
+     * Indique si le minotaure est vivant.
+     * 
+     * @return true si le minotaure est vivant, false sinon.
+     */
+    @Override
+    public boolean isVivant() {
+        return isVivant; // Champ protégé hérité d'AbstractPersonnage
+    }
+    
 }
