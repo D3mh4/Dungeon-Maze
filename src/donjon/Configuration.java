@@ -29,8 +29,8 @@ public class Configuration {
 	private static class ValeurInitiale {
 		
 		// dimension du dongon
-		private static int nbLignes = 10;
-		private static int nbColonnes = 10;
+		private static int nbLignes = 3;
+		private static int nbColonnes = 3;
 
 		// nombre de créature dans le donjon
 		private static int nbCreatures = 3;

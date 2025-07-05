@@ -12,7 +12,6 @@ package donjon;
  * @version Été 2025 - TP1
  */
 
-import java.util.Arrays;
 import physique.Position;
 
 public class Case {
@@ -127,14 +126,14 @@ public class Case {
 	 */
 	@Override
 	public String toString() {
-	    String[] voisinsStr = new String[4];
+	    String[] voisinsPos = new String[4];
 
 	    // Parcourt les 4 directions pour afficher la position de chaque voisin
 	    for (int i = 0; i < 4; i++) {
 	        if (voisins[i] != null && voisins[i].pos != null) {
-	            voisinsStr[i] = String.format("{%d,%d}", voisins[i].pos.getI(), voisins[i].pos.getJ());
+	            voisinsPos[i] = String.format("{%d,%d}", voisins[i].pos.getJ(), voisins[i].pos.getI());
 	        } else {
-	            voisinsStr[i] = "{null}"; // Aucun voisin dans cette direction
+	            voisinsPos[i] = "{null}"; // Aucun voisin dans cette direction
 	        }
 	    }
 
@@ -142,7 +141,7 @@ public class Case {
 	    return String.format(
 	        "Position : {%d,%d}, Decouverte ? %b, Fin ? %b, Developpé par l'alghorithme ? %b, Haut : %s, Bas : %s, Gauche : %s, Droite : %s",
 	        pos.getJ(), pos.getI(), decouverte, fin, developpe,
-	        voisinsStr[0], voisinsStr[1], voisinsStr[2], voisinsStr[3]
+	        voisinsPos[0], voisinsPos[1], voisinsPos[2], voisinsPos[3]
 	    );
 	}
 }

@@ -30,8 +30,8 @@ public class CreatureMinotaure extends AbstractCreature {
      * @return true si le minotaure est vivant, false sinon.
      */
     @Override
-    public boolean isVivant() {
-        return isVivant; // Champ protégé hérité d'AbstractPersonnage
+    public boolean estVivant() {
+        return estVivant; // Champ protégé hérité d'AbstractPersonnage
     }
     
 }

@@ -42,8 +42,8 @@ public class CreatureAraignee extends AbstractCreature {
      * @return true si l'araignée est vivante, false sinon.
      */
     @Override
-    public boolean isVivant() {
-        return isVivant; // Champ protégé hérité d'AbstractPersonnage
+    public boolean estVivant() {
+        return estVivant; // Champ protégé hérité d'AbstractPersonnage
     }
     
 }

@@ -105,7 +105,7 @@ public class Position {
      * @param posI, facteur de multiplication pour la coordonnée i
      * @param posJ, facteur de multiplication pour la coordonnée j
      */
-    public void multiplierPos(double posI, double posJ) {
+    public void multiplierPos(double posJ, double posI) {
         /* Multiplie i par posI et j par posJ
          * Cette méthode modifie directement la position courante */
         this.i *= posI;

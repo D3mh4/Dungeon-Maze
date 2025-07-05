@@ -1,7 +1,7 @@
 package pile;
 
 /**
- * Représente une pile générique implémentée avec une structure simplement chaînée.
+ * Représente une pile implémentée avec une structure simplement chaînée.
  *
  * @param <T> le type des éléments à empiler
  * 
@@ -11,34 +11,32 @@ package pile;
  * @version Été 2025 - TP1
  */
 public class PileSChainee<T> {
-
+    protected Noeud<T> tete;  // Référence vers la tete de la pile
+    protected int nbElements; // Nombre d'éléments dans la pile
+    
     /**
      * Représente un nœud de la pile.
      */
-    private static class Noeud<E> {
-        E valeur;      // Valeur stockée dans le nœud
-        Noeud<E> suivant;  // Référence vers le nœud suivant
+    private static class Noeud<T> {
+        T valeur;          // Valeur stockée dans le nœud
+        Noeud<T> suivant;  // Référence vers le nœud suivant
 
         /**
          * Constructeur du nœud.
          *
          * @param valeur, valeur contenue dans le nœud
-         * @param suivant, référence vers le nœud suivant
          */
-        Noeud(E valeur, Noeud<E> suivant) {
+        public Noeud(T valeur) {
             this.valeur = valeur;
-            this.suivant = suivant;
+            this.suivant = null;
         }
     }
-
-    private Noeud<T> sommet;  // Référence vers le sommet de la pile
-    private int nbElements;   // Nombre d'éléments dans la pile
 
     /**
      * Crée une pile vide.
      */
     public PileSChainee() {
-        this.sommet = null;
+        this.tete = null;
         this.nbElements = 0;
     }
 
@@ -48,16 +46,7 @@ public class PileSChainee<T> {
      * @return vrai si la pile ne contient aucun élément
      */
     public boolean estVide() {
-        return sommet == null;
-    }
-
-    /**
-     * Retourne le nombre d’éléments dans la pile.
-     *
-     * @return le nombre d’éléments
-     */
-    public int getNbElements() {
-        return nbElements;
+    	return nbElements == 0;
     }
 
     /**
@@ -66,13 +55,14 @@ public class PileSChainee<T> {
      * @param element l’élément à empiler
      */
     public void empiler(T element) {
-        // Création d'un nouveau nœud pointant vers l'ancien sommet
-        sommet = new Noeud<>(element, sommet);
+        Noeud<T> nouveau = new Noeud<>(element);
+        nouveau.suivant = tete;  // On rattache le nouveau sommet à l'ancien
+        tete = nouveau;          // On met à jour la tête
         nbElements++;
     }
 
     /**
-     * Dépile l’élément au sommet de la pile.
+     * Dépile le dernier élément de la pile.
      *
      * @return l’élément dépilé
      * @throws IllegalStateException si la pile est vide
@@ -82,9 +72,9 @@ public class PileSChainee<T> {
             throw new IllegalStateException("Pile vide");
         }
 
-        // Récupère la valeur au sommet puis supprime le sommet
-        T valeur = sommet.valeur;
-        sommet = sommet.suivant;
+        // Récupère la valeur à la tête de la pile puis le supprime
+        T valeur = tete.valeur;
+        tete = tete.suivant;
         nbElements--;
         return valeur;
     }
@@ -101,6 +91,6 @@ public class PileSChainee<T> {
         }
 
         // Retourne la valeur au sommet sans la supprimer
-        return sommet.valeur;
+        return tete.valeur;
     }
 }

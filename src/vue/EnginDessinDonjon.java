@@ -71,7 +71,7 @@ public class EnginDessinDonjon {
 	public void dessinerCreatures(Graphics2D g2, Vector<AbstractCreature> creatures) {
 		for (int i = 0; i < creatures.size(); i++) {
 			AbstractCreature creature = creatures.get(i);
-			if(creature.getCase().isDecouverte() && creature.isVivant()){
+			if(creature.getCase().isDecouverte() && creature.estVivant()){
 				dessinerCreature(g2, convertirIJaPixel(creature.getPos()), creature);
 			}
 		}

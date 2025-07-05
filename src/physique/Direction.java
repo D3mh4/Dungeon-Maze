@@ -13,7 +13,7 @@ import java.util.Random;
  *
  * @author Ahmed El Moudden
  * @author Marie-Claire Lajeunesse
- * @author Amine Abdaoui
+ * @author Amine Aabdaoui
  * @version Été 2025 - TP1
  */
 public class Direction {

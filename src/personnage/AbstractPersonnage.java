@@ -22,10 +22,10 @@ public abstract class AbstractPersonnage extends MonObservable {
 	protected Position pos;
 	protected Case caseCourante;
 	
-	protected boolean isVivant = true;
+	protected boolean estVivant = true;
 
-	public boolean isVivant() {
-		return isVivant;
+	public boolean estVivant() {
+		return estVivant;
 	}
 
 	/**

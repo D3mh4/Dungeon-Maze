@@ -9,7 +9,7 @@ package donjon;
  *
  * @author Ahmed El Moudden
  * @author Marie-Claire Lajeunesse
- * @author Amine Abdaoui
+ * @author Amine Aabdaoui
  * @version Été 2025 - TP1
  */
 
@@ -36,8 +36,8 @@ public class Donjon {
         cases = new Case[nbrLignes][nbrColonnes];
 
         // Création de toutes les cases du donjon
-        for (int i = 0; i < cases.length; i++)
-            for (int j = 0; j < cases[i].length; j++)
+        for (int j = 0; j < cases.length; j++)
+            for (int i = 0; i < cases[j].length; i++)
                 cases[j][i] = new Case(new Position(j, i));
 
         // Choix aléatoire de la case de départ
@@ -180,7 +180,6 @@ public class Donjon {
 
         PileSChainee<Case> pile = new PileSChainee<Case>();
         pile.empiler(caseDepart);
-        int cpt = 0;
 
         while (!pile.estVide()) {
             Case caseActuel = pile.regarder();
@@ -206,7 +205,6 @@ public class Donjon {
 
                 // Empile le voisin pour continuer la génération
                 pile.empiler(caseVoisin);
-                cpt++;
 
                 // Met à jour la case de fin avec la dernière ajoutée
                 this.caseFin = pile.regarder();
