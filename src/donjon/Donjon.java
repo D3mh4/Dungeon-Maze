@@ -21,11 +21,11 @@ import java.util.Random;
 public class Donjon {
 
     public static Random rand = new Random(); // Générateur de nombres aléatoires
-    Case[][] cases; // Grille du donjon
-    Case caseDepart; // Case de départ
-    Case caseFin; // Case de fin
-    int nbrLignes = Configuration.getInstance().getConfig(0); // Nombre de lignes du donjon
-    int nbrColonnes = Configuration.getInstance().getConfig(1); // Nombre de colonnes du donjon
+    private Case[][] cases; // Grille du donjon
+    private Case caseDepart; // Case de départ
+    private Case caseFin; // Case de fin
+    private int nbrLignes = Configuration.getInstance().getConfig(0); // Nombre de lignes du donjon
+    private int nbrColonnes = Configuration.getInstance().getConfig(1); // Nombre de colonnes du donjon
 
     /**
      * Constructeur de la classe Donjon.

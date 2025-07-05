@@ -30,5 +30,5 @@ public abstract class AbstractCreature extends AbstractPersonnage {
 	 *
 	 * @return true si la créature est vivante, false sinon.
 	 */
-	public abstract boolean estVivant(); // Méthode à implémenter dans les sous-classes
+	public abstract boolean isVivant(); // Méthode à implémenter dans les sous-classes
 }
