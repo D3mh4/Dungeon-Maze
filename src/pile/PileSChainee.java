@@ -11,7 +11,7 @@ package pile;
  * @version Été 2025 - TP1
  */
 public class PileSChainee<T> {
-    protected Noeud<T> tete;  // Référence vers la tete de la pile
+    protected Noeud<T> tete;  // Référence vers la tête de la pile
     protected int nbElements; // Nombre d'éléments dans la pile
     
     /**
