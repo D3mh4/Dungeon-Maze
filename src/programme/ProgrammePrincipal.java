@@ -1,7 +1,7 @@
 package programme;
 
 
-public class ProgrammePrincipal {
+public class programmePrincipal {
 
 	/**
 	 * Programme principal, lance la vue du programme

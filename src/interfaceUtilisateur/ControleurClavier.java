@@ -16,9 +16,9 @@ package interfaceUtilisateur;
 import java.awt.event.*;
 import java.util.Observable;
 
+import joueur.Joueur;
 import modele.PlanDeJeu;
 import physique.Direction;
-import personnage.*;
 
 public class ControleurClavier implements KeyListener{
 
@@ -40,35 +40,33 @@ public class ControleurClavier implements KeyListener{
 	@Override
 	public void keyPressed(KeyEvent e) {
 		
-		
 		// obtient une référence au joueur courant
 		Joueur joueurControlle =  planDeJeu.getJoueur();
-		String msgh;
+		
 		// s'assure qu'un joueur a été initialisé
 		if(joueurControlle != null){
 			
 			int keyCode = e.getKeyCode();
-			msgh = KeyEvent.getKeyText(keyCode);
-			// gestion de l'action en fonction de l'événement clavier
-			switch(KeyEvent.getKeyText(keyCode)){
-			
-				case "Haut":
-					     	planDeJeu.getJoueur().seDeplacer(0);
-					     	System.out.println("HAUT");
-					break;
-				case "Bas":
-							planDeJeu.getJoueur().seDeplacer(1);
-					break;
-				case "Gauche":
-							planDeJeu.getJoueur().seDeplacer(2);
-					break;
-				case "Droite":
-							planDeJeu.getJoueur().seDeplacer(3);
-					break;
-			
+			switch(keyCode){
+
+            case KeyEvent.VK_UP:
+                   joueurControlle.seDeplacer(Direction.HAUT);
+                   break;
+
+            case KeyEvent.VK_DOWN:
+                   joueurControlle.seDeplacer(Direction.BAS);
+                   break;
+
+            case KeyEvent.VK_LEFT:
+                   joueurControlle.seDeplacer(Direction.GAUCHE);
+                   break;
+
+            case KeyEvent.VK_RIGHT:
+                   joueurControlle.seDeplacer(Direction.DROITE);
+                   break;
+
 			}
 		}
-		
 	}
 
 	@Override

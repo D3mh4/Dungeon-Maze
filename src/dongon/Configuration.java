@@ -1,4 +1,4 @@
-package donjon;
+package dongon;
 
 /**
  * Configuration du dongon.
@@ -19,7 +19,7 @@ package donjon;
  * On peut revenir aux configurations initiales à l'aide de remiseAZero
  * 
  * @author Fred Simard | ETS
- * @version Hiver 2022 - TP2
+ * @version ETE 2018 - TP2
  */
 
 public class Configuration {
@@ -29,14 +29,17 @@ public class Configuration {
 	private static class ValeurInitiale {
 		
 		// dimension du dongon
-		private static int nbLignes = 10;
-		private static int nbColonnes = 10;
+		private static double nbLignes = 10;
+		private static double nbColonnes = 10;
 
 		// nombre de créature dans le donjon
-		private static int nbCreatures = 3;
+		private static double nbCreatures = 3;
 
 		// nombre de créature dans le donjon
-		private static int nbTypeCreatures = 3;		
+		private static double nbTypeCreatures = 3;	
+
+		// nombre de créature dans le donjon
+		private static double nbEquipements = 4;	
 	}
 	
 	// constantes à utiliser pour accéder au configurations
@@ -44,13 +47,15 @@ public class Configuration {
 	public static final int NB_COLONNES = 1;
 	public static final int NB_CREATURES = 2;
 	public static final int NB_TYPES_CREATURES = 3;
+	public static final int NB_EQUIPEMENTS = 4;
 	
 	// tableau contenant les configurations
-	private static int[] tabConfig = {
+	public static double[] tabConfig = {
 			ValeurInitiale.nbLignes,
 			ValeurInitiale.nbColonnes,
 			ValeurInitiale.nbCreatures,
-			ValeurInitiale.nbTypeCreatures
+			ValeurInitiale.nbTypeCreatures,
+			ValeurInitiale.nbEquipements
 	};
 
 	//référence à l'objet.
@@ -74,7 +79,7 @@ public class Configuration {
 	 * @param configID, entier identifiant la configuration
 	 * @param value, valeur à assigner
 	 */
-	public void setConfig(int configID, int value){
+	public void setConfig(int configID, double value){
 		this.tabConfig[configID] = value;
 	}
 
@@ -84,7 +89,7 @@ public class Configuration {
 	 * @param configID, entier identifiant la configuration
 	 * @return valeur assigné
 	 */
-	public int getConfig(int configID){
+	public double getConfig(int configID){
 		return this.tabConfig[configID];
 	}
 	
@@ -94,6 +99,8 @@ public class Configuration {
 	public static void remiseAZero(){
 		tabConfig[NB_LIGNES] = ValeurInitiale.nbLignes;
 		tabConfig[NB_COLONNES] = ValeurInitiale.nbColonnes;
-		tabConfig[NB_CREATURES] = ValeurInitiale.nbCreatures;
+		tabConfig[NB_CREATURES] = ValeurInitiale.nbTypeCreatures;
+		tabConfig[NB_TYPES_CREATURES] = ValeurInitiale.nbCreatures;
+		tabConfig[NB_EQUIPEMENTS] = ValeurInitiale.nbEquipements;
 	}
 }

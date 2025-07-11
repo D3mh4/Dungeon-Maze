@@ -9,7 +9,7 @@ package vue;
  * rafraîchit l'affichage.
  * 
  * @author Fred Simard | ETS
- * @version Hiver 2022 - TP2
+ * @version ETE 2018 - TP2
  */
 
 
@@ -22,10 +22,11 @@ import java.util.Observer;
 
 import javax.swing.JPanel;
 
-import donjon.Donjon;
+import dongon.Donjon;
 import interfaceUtilisateur.ControleurClavier;
 import modele.PlanDeJeu;
 import observer.MonObserver;
+import personnage.AbstractPersonnage;
 import physique.Position;
 
 public class PanneauDonjon extends JPanel implements MonObserver{
@@ -41,10 +42,9 @@ public class PanneauDonjon extends JPanel implements MonObserver{
 	 */
 	public PanneauDonjon(Dimension taille){
 		
-		Dimension centre = new Dimension(taille.width/2, taille.height/2);
+		Dimension centre = new Dimension(taille.width/3, taille.height/2);
 		enginDessinDonjon = new EnginDessinDonjon(centre);
 		planDeJeu.attacherObserver(this);
-		setBackground(Color.cyan);
 		this.taille = taille;
 		validate();
 		repaint();		
@@ -68,8 +68,12 @@ public class PanneauDonjon extends JPanel implements MonObserver{
 		// re-dessine les éléments du jeu
 		enginDessinDonjon.dessinerDonjon(g2, planDeJeu.getDonjon());
 		enginDessinDonjon.dessinerCreatures(g2, planDeJeu.getCreatures());
+		enginDessinDonjon.dessinerEquipements(g2, planDeJeu.getEquipements());
 		enginDessinDonjon.dessinerJoueur(g2, planDeJeu.getJoueur());
-		
+
+		if(!planDeJeu.estEnCombat()){
+			requestFocus();
+		}
 	}
 
 

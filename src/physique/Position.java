@@ -1,141 +1,72 @@
 package physique;
 
 /**
- * Représente une position dans une grille bidimensionnelle (ligne j, colonne i).
+ * La classe position permet de garde une position de labyrinthe en mémoire.
+ * La classe est également utilisé pour encode une position en pixel à l'écran.
  * 
- * Fournit des méthodes pour :
- * - Accéder et modifier les coordonnées.
- * - Effectuer des opérations vectorielles de base : addition, soustraction, multiplication.
- * - Cloner et comparer des positions.
+ * La position est définit dans un plan cartésien et utilise la convention I, J
  * 
- * Utilisée notamment pour représenter les coordonnées des cases dans un labyrinthe.
+ * services offerts:
+ * - contructeur par paramètre
+ * - contructeur par copie
+ * - accesseur/mutateur
+ * - additionner, soustraire, multiplier
  * 
- * @author Ahmed El Moudden
- * @author Marie-Claire Lajeunesse
- * @author Amine Aabdaoui
- * @version Été 2025 - TP1
+ * @author Fred Simard | ETS
+ * @version ETE 2018 - TP2
  */
+
 public class Position {
+	private int i;
+	private int j;
+	
+	public Position(){}
 
-    private int i;  // Coordonnée colonne
-    private int j;  // Coordonnée ligne
-    
-    /**
-     * Constructeur qui initialise une position avec ses coordonnées.
-     *
-     * @param j, coordonnée ligne dans la grille
-     * @param i, coordonnée colonne dans la grille
-     */
-    public Position(int j, int i) {
-        this.i = i;
-        this.j = j;
-    }
-    
-    /**
-     * Constructeur par copie d'une autre position.
-     *
-     * @param autrePosition, position à copier
-     */
-    public Position(Position autrePosition) {
-        this.i = autrePosition.i;
-        this.j = autrePosition.j;
-    }
+	public Position(int i, int j){
+		this.i = i;
+		this.j = j;
+	}
 
-    /**
-     * Retourne la coordonnée i (colonne).
-     *
-     * @return la coordonnée i
-     */
-    public int getI() {
-        return i;
-    }
+	public Position(Position position){
+		this.i = position.i;
+		this.j = position.j;
+	}
+	
+	public void setI(int i){
+		this.i = i;
+	}
 
-    /**
-     * Définit la coordonnée i (colonne).
-     *
-     * @param i, nouvelle valeur de la coordonnée i
-     */
-    public void setI(int i) {
-        this.i = i;
-    }
+	public void setJ(int j){
+		this.j = j;
+	}
+	
+	public int getI(){
+		return i;
+	}
 
-    /**
-     * Retourne la coordonnée j (ligne).
-     *
-     * @return la coordonnée j
-     */
-    public int getJ() {
-        return j;
-    }
+	public int getJ(){
+		return j;
+	}
+	
+	public void additionnerPos(Position pos){
+		i += pos.i;
+		j += pos.j;
+	}
+	
+	public void soustrairePos(Position pos){
+		i -= pos.i;
+		j -= pos.j;
+	}
 
-    /**
-     * Définit la coordonnée j (ligne).
-     *
-     * @param j, nouvelle valeur de la coordonnée j
-     */
-    public void setJ(int j) {
-        this.j = j;
-    }
-    
-    /**
-     * Additionne les coordonnées d'une autre position à cette position.
-     *
-     * @param pos, position dont les coordonnées seront additionnées
-     */
-    public void additionnerPos(Position pos) {
-        // Ajoute les coordonnées i et j de pos à cette position
-        this.i += pos.getI();
-        this.j += pos.getJ();
-    }
-    
-    /**
-     * Soustrait les coordonnées d'une autre position à cette position.
-     *
-     * @param pos, position dont les coordonnées seront soustraites
-     */
-    public void soustrairePos(Position pos) {
-        // Soustrait les coordonnées i et j de pos à cette position
-        this.i -= pos.getI();
-        this.j -= pos.getJ();
-    }
-    
-    /**
-     * Multiplie les coordonnées par des facteurs donnés.
-     *
-     * @param posI, facteur de multiplication pour la coordonnée i
-     * @param posJ, facteur de multiplication pour la coordonnée j
-     */
-    public void multiplierPos(double posJ, double posI) {
-        /* Multiplie i par posI et j par posJ
-         * Cette méthode modifie directement la position courante */
-        this.i *= posI;
-        this.j *= posJ;
-    }
-    
-    /**
-     * Crée et retourne une copie de cette position.
-     *
-     * @return une nouvelle Position identique à cette position
-     */
-    @Override
-    public Position clone() {
-        // Renvoie une nouvelle instance avec les mêmes coordonnées
-        return new Position(this);
-    }
-    
-    /**
-     * Vérifie si cette position est égale à un autre objet.
-     *
-     * @param obj, objet à comparer avec cette position
-     * @return true si obj est une position avec les mêmes coordonnées, false sinon
-     */
-    @Override
-    public boolean equals(Object obj) {
-        if(obj instanceof Position) {
-            Position autrePosition = (Position)obj;
-            // Compare les coordonnées i et j
-            return (this.i == autrePosition.i && this.j == autrePosition.j);
-        }
-        return false;
-    }
+	public void multiplierPos(double multiI,double multiJ){
+		i *= multiI;
+		j *= multiJ;
+	}
+	
+	public boolean equals(Position pos){
+		if(i==pos.i && j==pos.j){
+			return true;
+		}
+		return false;
+	}
 }

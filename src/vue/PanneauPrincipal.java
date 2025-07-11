@@ -7,12 +7,14 @@ package vue;
  * - le panneau du donjon
  * 
  * @author Fred Simard | ETS
- * @version Hiver 2022 - TP2
+ * @version ETE 2018 - TP2
  */
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import java.util.Observable;
+import java.util.Observer;
 
 import javax.swing.JPanel;
 
@@ -20,8 +22,8 @@ public class PanneauPrincipal extends JPanel{
 
 	Dimension tailleEcran = Toolkit.getDefaultToolkit().getScreenSize();
 	
-	// Montre les villes.
-	private PanneauDonjon panDonjon;
+	// Panneaux
+	public PanneauDonjon panDonjon;
 
 	/**
 	 * Constructeur
@@ -49,7 +51,10 @@ public class PanneauPrincipal extends JPanel{
 		// définit le panneau de donjon
 		panDonjon = new PanneauDonjon(tailleEcran);
 		add(panDonjon, BorderLayout.CENTER);
+
+		panDonjon.requestFocus();
 		
 	}
+
 
 }

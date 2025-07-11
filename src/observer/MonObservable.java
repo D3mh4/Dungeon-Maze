@@ -3,14 +3,14 @@ package observer;
 /**
  * Classe abstraite du patron Observable
  * @author Fred Simard | ETS
- * @version Hiver 2022 - TP2
+ * @version ETE 2018 - TP2
  */
 
 import java.util.ArrayList;
 
 public abstract class MonObservable {
 
-// liste des observers
+	// liste des observers
 	ArrayList<MonObserver> observers = new ArrayList<MonObserver>();
 	
 	/**
@@ -28,10 +28,6 @@ public abstract class MonObservable {
 		for(MonObserver observer:observers){
 			observer.avertir();
 		}
-	}
-
-	public ArrayList<MonObserver> getObservers() {
-		return observers;
 	}
 		
 }

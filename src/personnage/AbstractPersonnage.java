@@ -4,7 +4,7 @@ package personnage;
  * Classe abstraite d'un personnage d'un jeu
  * 
  * @author Fred Simard | ETS
- * @version Hiver 2022 - TP2
+ * @version ETE 2018 - TP2
  */
 
 import physique.Direction;
@@ -12,26 +12,26 @@ import physique.Position;
 
 import java.util.Observable;
 
-import donjon.Case;
+import dongon.AbstractObjet;
+import dongon.Case;
 import observer.MonObservable;
 
+public abstract class AbstractPersonnage extends AbstractObjet {
 
-public abstract class AbstractPersonnage extends MonObservable {
-
-	// propriétés d'un personnage
-	protected Position pos;
-	protected Case caseCourante;
 	
-	protected boolean isVivant = true;
-
-	public boolean isVivant() {
-		return isVivant;
-	}
+	protected int armure=0;
+	protected int force=10;
+	protected int bonusAttaque = 0;
+	protected int pointDeVie=100;
+	protected int pointDeVieMax=100;
 
 	/**
 	 * constructeur
 	 * @param pos, position I,J dans le labyrinthe
 	 */
+	
+	public AbstractPersonnage(){}
+	
 	public AbstractPersonnage(Position pos){
 		this.pos = pos;
 	}
@@ -55,29 +55,32 @@ public abstract class AbstractPersonnage extends MonObservable {
 		}
 	}
 
-	/**
-	 * méthode d'accès pour la position du personnage
-	 * @return la position du personnage (par copie)
-	 */
-	public Position getPos(){
-		return new Position(pos);
+	public int getArmure() {
+		return armure;
 	}
 
-	/**
-	 * mutatrice qui définit la case courante
-	 * @param caseCourante, case du personnage
-	 */
-	public void setCase(Case caseCourante){
-		this.caseCourante = caseCourante;
+	public int getForce() {
+		return force + bonusAttaque;
+	}
+
+	public int getPointDeVie() {
+		return pointDeVie;
 	}
 	
-	/**
-	 * informatrice pour la case du personnage
-	 * @return case courante
-	 */
-	public Case getCase(){
-		return this.caseCourante;
+	public int getPointDeVieMax() {
+		return pointDeVieMax;
+	}
+	
+	public void recoitCoup(int forceCoup) {
+		forceCoup -= armure;
+		
+		if(forceCoup > 0){
+			pointDeVie -= forceCoup;
+		}
 	}
 
+	public boolean estVivant() {
+		return (pointDeVie>0);
+	}
 	
 }

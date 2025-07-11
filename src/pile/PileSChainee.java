@@ -1,96 +1,95 @@
 package pile;
 
+
 /**
- * Représente une pile implémentée avec une structure simplement chaînée.
- *
- * @param <T> le type des éléments à empiler
+ * Ce fichier implémente une pile simplement chaînée. Utilise une
+ * classe interne (Noeud)
  * 
- * @author Ahmed El Moudden
- * @author Marie-Claire Lajeunesse
- * @author Amine Aabdaoui
- * @version Été 2025 - TP1
+ * Les services offerts:
+ *  - enpiler, permet d'ajouter un élément au début
+ *  - depiler, permet d'enlever l'élément du debut
+ *  - regarder, permet d'obtenir l'élément du debut sans l'enlever
+ *  - estVide, permet de savoir si la pile est vide
+ * 
+ * Le fichier définit également la classe privée Noeud.
+ * 
+ * @author Fred Simard, ETS
+ * @version Été 2018
+ * 
  */
-public class PileSChainee<T> {
-    protected Noeud<T> tete;  // Référence vers la tête de la pile
-    protected int nbElements; // Nombre d'éléments dans la pile
+ 
+ 
+
+public class PileSChainee
+{
+    
+
+    /**
+     * Classe privée qui définit un Noeud de la pile, il s'agit d'un noeud simplement chainée
+     * auquel est attaché un élément de type Object.
+     * 
+     * Il contient une référence sur le noeuds suivant et un constructeur
+     * pour simplifer l'initialisation
+     */
+    class Noeud
+    {
+        private Object element;
+        private Noeud suivant = null;
+        
+        public Noeud(){}
+        
+        public Noeud(Object element){
+            this.element = element;
+        }
+        
+    }
+    
+    private Noeud tete = null;
+    
+    public PileSChainee(){}
     
     /**
-     * Représente un nœud de la pile.
+     * méthode pour ajouter un élément à la pile
+     * @param element, élément à ajouter
      */
-    private static class Noeud<T> {
-        T valeur;          // Valeur stockée dans le nœud
-        Noeud<T> suivant;  // Référence vers le nœud suivant
+    public void empiler(Object element){
+    	Noeud noeud = new Noeud(element);
+    	noeud.suivant = tete;
+        tete = noeud;
+    }
+    
+    /**
+     * méthode pour dépiler un élément
+     * @return l'élément dépilé
+     */
+    public Object depiler(){
+    	
+    	if(tete==null){
+    		return null;
+    	}
+    	
+    	Object element = tete.element;
+    	tete = tete.suivant;
+    	return element;
+    }
 
-        /**
-         * Constructeur du nœud.
-         *
-         * @param valeur, valeur contenue dans le nœud
-         */
-        public Noeud(T valeur) {
-            this.valeur = valeur;
-            this.suivant = null;
+    /**
+     * méthode pour regarder l'élément sur la pile, sans l'enlever
+     * @return l'élément du dessus
+     */
+    public Object regarder(){
+        return tete.element;
+    }
+
+    /**
+     * méthode pour savoir si la liste est vide
+     * @return true, si la liste est vide, false sinon
+     */
+    public boolean estVide(){
+        if(tete==null){
+        	return true;
         }
+    	return false;
     }
-
-    /**
-     * Crée une pile vide.
-     */
-    public PileSChainee() {
-        this.tete = null;
-        this.nbElements = 0;
-    }
-
-    /**
-     * Vérifie si la pile est vide.
-     *
-     * @return vrai si la pile ne contient aucun élément
-     */
-    public boolean estVide() {
-    	return nbElements == 0;
-    }
-
-    /**
-     * Empile un nouvel élément sur la pile.
-     *
-     * @param element l’élément à empiler
-     */
-    public void empiler(T element) {
-        Noeud<T> nouveau = new Noeud<>(element);
-        nouveau.suivant = tete;  // On rattache le nouveau sommet à l'ancien
-        tete = nouveau;          // On met à jour la tête
-        nbElements++;
-    }
-
-    /**
-     * Dépile le dernier élément de la pile.
-     *
-     * @return l’élément dépilé
-     * @throws IllegalStateException si la pile est vide
-     */
-    public T depiler() {
-        if (estVide()) {
-            throw new IllegalStateException("Pile vide");
-        }
-
-        // Récupère la valeur à la tête de la pile puis le supprime
-        T valeur = tete.valeur;
-        tete = tete.suivant;
-        nbElements--;
-        return valeur;
-    }
-
-    /**
-     * Retourne l’élément au sommet sans le dépiler.
-     *
-     * @return l’élément au sommet
-     * @throws IllegalStateException si la pile est vide
-     */
-    public T regarder() {
-        if (estVide()) {
-            throw new IllegalStateException("Pile vide");
-        }
-
-        // Retourne la valeur au sommet sans la supprimer
-        return tete.valeur;
-    }
+    
 }

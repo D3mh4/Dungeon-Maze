@@ -19,7 +19,7 @@ import modele.PlanDeJeu;
  * définit un comportement de fin de programme par fenêtre de confirmation
  *
  * @author Frédéric Simard
- * @version Hiver 2022
+ * @version E2018
  */
 @SuppressWarnings("serial")
 public class CadrePrincipal extends JFrame implements Runnable {
@@ -48,6 +48,9 @@ public class CadrePrincipal extends JFrame implements Runnable {
     	
     	// ajoute une barre de menu au panneau principal
     	setContentPane(panPrincipal);
+    	
+    	panPrincipal.addKeyListener(clavier);
+    	panPrincipal.panDonjon.addKeyListener(clavier);
 
     	// configure le Frame
     	configurerFrame();
