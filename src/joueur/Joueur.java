@@ -32,6 +32,11 @@ import physique.Position;
 public class Joueur extends AbstractPersonnage {
 	
 	private final int PROFONDEUR_VISION = 2;
+	
+	private Vector<AbstractEquipement> equipements = new Vector<>();
+	private Casque casqueEquipe;
+	private Armure armureEquipe;
+	private Arme armeEquipe;
 
 	/**
 	 * Construceur par paramètre
@@ -42,6 +47,63 @@ public class Joueur extends AbstractPersonnage {
 		pointDeVieMax=100;
 	}
 
+	public Vector<AbstractEquipement> getEquipements(){
+		return this.equipements;
+	}
+	
+	public Casque getCasqueEquipe() {
+		return this.casqueEquipe;
+	}
+
+	public Armure getArmureEquipe() {
+		return this.armureEquipe;
+	}
+
+	public Arme getArmeEquipe() {
+		return this.armeEquipe;
+	}
+	
+	public void equiper(AbstractEquipement equipement) {
+		
+		if(equipement instanceof Casque) {
+			this.casqueEquipe = (Casque) equipement;
+			
+		} else if(equipement instanceof Armure) {
+			this.armureEquipe = (Armure) equipement;
+			
+		} else if (equipement instanceof Arme){
+			this.armeEquipe = (Arme) equipement;
+		}
+		
+		armure = 0;
+		
+		if(armureEquipe != null) {
+			armure += armureEquipe.getValeur();
+		}
+		
+		if(casqueEquipe != null) {
+			armure += casqueEquipe.getValeur();
+		}
+		
+		bonusAttaque = 0;
+		
+		if(armeEquipe != null) {
+			bonusAttaque += armeEquipe.getValeur();
+		}
+	}
+	
+	public void utiliserPotion() {
+		for(int i = 0; i < equipements.size(); i++) {
+			if(equipements.get(i) instanceof Potion) {
+				equipements.remove(i);
+				this.pointDeVie = this.pointDeVieMax;
+				break;
+			}
+		}
+	}
+
+	
+	
 	/**
 	 * surcharge de la méthode pour déplacer le joueur dans la direction donnée
 	 * @param direction(int), direction du mouvement
@@ -91,6 +153,10 @@ public class Joueur extends AbstractPersonnage {
 		}
 	}
 	
+	public void ramasserEquipement(AbstractEquipement equipement) {
+		equipement.setAuSol(false);
+		this.equipements.add(equipement);
+	}
 	
 
 	/**
@@ -100,6 +166,13 @@ public class Joueur extends AbstractPersonnage {
 	 */
 	public void remiseAZero(){
 		this.pointDeVie = this.pointDeVieMax;
+		this.equipements.clear();
+		
+		this.armeEquipe = null;
+		this.casqueEquipe = null;
+		this.armureEquipe = null;
+		
+		equiper(null);
 	}
 
 }
