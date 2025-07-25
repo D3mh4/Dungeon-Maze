@@ -25,6 +25,7 @@ import creature.AbstractCreature;
 import joueur.Joueur;
 import observer.MonObservable;
 import personnage.AbstractPersonnage;
+import vue.FenetreCombat;
 
 public class GestionnaireCombat extends MonObservable implements Runnable{
 	
@@ -53,6 +54,8 @@ public class GestionnaireCombat extends MonObservable implements Runnable{
 		this.creature = creature;
 		
 		// lance le pop-up window
+		FenetreCombat fenetreCombat = new FenetreCombat(hero, creature, this);
+		attacherObserver(fenetreCombat);
 		// (à compléter)
 		
 		// lance la tâche qui gère le combat
@@ -120,7 +123,7 @@ public class GestionnaireCombat extends MonObservable implements Runnable{
 		// boucle tant que le hero et la creature sont vivants
 		}while(hero.estVivant() && creature.estVivant());
 
-		combatEnCours = false;
+
 	}
 
 	/**
