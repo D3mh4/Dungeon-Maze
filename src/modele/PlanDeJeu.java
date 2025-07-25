@@ -219,6 +219,7 @@ public class PlanDeJeu extends MonObservable implements MonObserver, Runnable {
 		this.joueur.setPos(new Position(depart.getPos().getI(),depart.getPos().getJ()));
 		this.joueur.attacherObserver(this);
 		this.joueur.setCase(depart);
+		
 	}
 
 	@Override

@@ -151,6 +151,9 @@ public class GestionnaireCombat extends MonObservable implements Runnable{
         for (int i = 0; i < messages.size(); ++i){
             str += messages.get(i) + "\n";
         }
+        
+        messages.clear();
+
         return str;
 	}
 
