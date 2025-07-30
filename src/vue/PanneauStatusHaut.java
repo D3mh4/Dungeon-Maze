@@ -6,6 +6,12 @@ import javax.swing.*;
 import joueur.*;
 import modele.PlanDeJeu;
 
+import javax.swing.Timer;
+import javax.swing.border.EmptyBorder;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 public class PanneauStatusHaut extends JPanel {
 
 	JLabel etiquetteNom = new JLabel("Leeroy Jenkins");
@@ -17,14 +23,25 @@ public class PanneauStatusHaut extends JPanel {
 	PlanDeJeu planDeJeu = PlanDeJeu.getInstance();
 	Joueur joueur = planDeJeu.getJoueur();
 	
+	private Timer timer;
+	
 	public PanneauStatusHaut() {
 		configurerPanneau();
 		configurerContenu();
+		
+		timer = new Timer(1000, new ActionListener() {
+		    @Override
+		    public void actionPerformed(ActionEvent e) {
+		    	etiquetteTemps.setText("Temps de jeu : " + planDeJeu.getTempsJoueEnSecondes() + " secondes");
+		    }
+		});
+		timer.start();
 	}
 
 	private void configurerPanneau() {
 		
 		setBorder(BorderFactory.createLineBorder(Color.GRAY, 2));
+		setBorder(new EmptyBorder(0, 15, 0, 15));
 	}
 	
 	private void configurerContenu() {
@@ -53,6 +70,7 @@ public class PanneauStatusHaut extends JPanel {
 	public void mettreAJoursInfo() {
 		barreProgression.setValue(joueur.getPointDeVie()*100/joueur.getPointDeVieMax());
 		etiquetteNiveau.setText("Niveau : " + planDeJeu.getNiveau());
+		etiquetteNbEnnemi.setText("Nombre d'ennemies tués : " + planDeJeu.getNbCreatureTuee());
 	}
 	
 	

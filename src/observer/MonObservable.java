@@ -21,12 +21,16 @@ public abstract class MonObservable {
 		observers.add(observer);
 	}
 	
+	public void detacherLesObserver() {
+	    observers.clear();
+	}
+	
 	/**
 	 * méthode pour avertir tous les observers
 	 */
 	public void avertirLesObservers(){
-		for(MonObserver observer:observers){
-			observer.avertir();
+		for (MonObserver o : new ArrayList<>(observers)) {
+		    o.avertir();
 		}
 	}
 		

@@ -102,6 +102,7 @@ public class GestionnaireCombat extends MonObservable implements Runnable{
 				
 				// si la creature est morte, c'est la fin du combat
 				messages.add("Creature vaincu");
+				PlanDeJeu.getInstance().addCreatureTuee();
 				this.avertirLesObservers();
 			}
 
@@ -139,6 +140,7 @@ public class GestionnaireCombat extends MonObservable implements Runnable{
 	 */
 	public void combatTermine(){
 		combatEnCours = false;
+		this.detacherLesObserver();
 	}
 
 	/**

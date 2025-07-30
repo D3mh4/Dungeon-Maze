@@ -42,6 +42,8 @@ import physique.Position;
 
 public class PlanDeJeu extends MonObservable implements MonObserver, Runnable {
 
+	private long startTime = System.currentTimeMillis();
+	
 	private Donjon donjon;
 	private Joueur joueur = new Joueur();
 	private boolean partieEnCours = false;
@@ -50,6 +52,8 @@ public class PlanDeJeu extends MonObservable implements MonObserver, Runnable {
 	private Vector<AbstractCreature> creatures = new Vector<AbstractCreature>(10);
 	private Vector<AbstractEquipement> equipements = new Vector<AbstractEquipement>(10);
 	private Random rand = new Random(System.currentTimeMillis());
+	
+	private int nbCreatureTuee = 0;
 	
 	private static final PlanDeJeu instance = new PlanDeJeu();
 	private static Thread t;
@@ -78,6 +82,10 @@ public class PlanDeJeu extends MonObservable implements MonObserver, Runnable {
 		return this.donjon;
 	}
 
+	public int getTempsJoueEnSecondes() {
+	    return (int)((System.currentTimeMillis() - startTime) / 1000);
+	}
+	
     /**
      * méthode qui permet de déterminer si un combat est en cours.
      * @return true si combat en cours
@@ -101,6 +109,15 @@ public class PlanDeJeu extends MonObservable implements MonObserver, Runnable {
 	 */
 	public Joueur getJoueur(){
 		return this.joueur;
+	}
+	
+	public void addCreatureTuee(){
+		nbCreatureTuee++;
+		this.avertirLesObservers();
+	}
+	
+	public int getNbCreatureTuee(){
+		return nbCreatureTuee;
 	}
 	
 
