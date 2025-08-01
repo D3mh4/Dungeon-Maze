@@ -80,7 +80,14 @@ public class FenetreCombat extends JFrame implements MonObserver {
     }
 
     private void configurerMessage() {
-        zoneTexte = new JTextArea(16, 20);
+    	try {
+			Font policeArsenal = Font.createFont(Font.TRUETYPE_FONT, new File("polices/Arsenal-Regular.ttf")).deriveFont(16f);
+			zoneTexte = new JTextArea(16, 20);
+			zoneTexte.setFont(policeArsenal);
+		}catch (IOException | FontFormatException e) {
+			e.printStackTrace();
+		}
+       
         zoneTexte.setEditable(false);
         scrollPane = new JScrollPane(zoneTexte);
         scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
