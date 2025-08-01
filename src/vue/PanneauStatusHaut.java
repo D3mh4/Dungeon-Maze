@@ -11,6 +11,8 @@ import javax.swing.border.EmptyBorder;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.IOException;
 
 public class PanneauStatusHaut extends JPanel {
 
@@ -47,6 +49,19 @@ public class PanneauStatusHaut extends JPanel {
 	private void configurerContenu() {
 		
 		setLayout(new GridLayout(5,1));
+
+		try {
+			Font policeMerriweather = Font.createFont(Font.TRUETYPE_FONT, new File("polices/Merriweather-VariableFont_opsz,wdth,wght.ttf")).deriveFont(Font.BOLD | Font.ITALIC, 24f);
+			etiquetteNom.setFont(policeMerriweather);
+
+			Font policeArsenal = Font.createFont(Font.TRUETYPE_FONT, new File("polices/Arsenal-Regular.ttf")).deriveFont(16f);
+			etiquetteNiveau.setFont(policeArsenal);
+			etiquetteNbEnnemi.setFont(policeArsenal);
+			etiquetteTemps.setFont(policeArsenal);
+
+		}catch (IOException | FontFormatException e) {
+			e.printStackTrace();
+		}
 		
 		add(etiquetteNom);
 		etiquetteNom.setFont(new Font("Serif", Font.BOLD | Font.ITALIC, 24));

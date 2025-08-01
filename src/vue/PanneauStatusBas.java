@@ -1,9 +1,8 @@
 package vue;
 
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Toolkit;
+import java.awt.*;
+import java.io.File;
+import java.io.IOException;
 
 import javax.swing.BorderFactory;
 import javax.swing.JPanel;
@@ -33,12 +32,17 @@ public class PanneauStatusBas extends JPanel {
 	}
 	
 	private void configurerContenu() {
-		
+		try {
+			Font policeArsenal = Font.createFont(Font.TRUETYPE_FONT, new File("polices/Arsenal-Regular.ttf")).deriveFont(16f);
+			zoneTexte = new JTextArea();
+			zoneTexte.setFont(policeArsenal);
+		}catch (IOException | FontFormatException e) {
+			e.printStackTrace();
+		}
 		setLayout(new BorderLayout());
 		
 		setBorder(new EmptyBorder(15, 15, 15, 15));
 
-	    zoneTexte = new JTextArea();
 	    zoneTexte.setEditable(false);
 
 	    scrollPane = new JScrollPane(zoneTexte);

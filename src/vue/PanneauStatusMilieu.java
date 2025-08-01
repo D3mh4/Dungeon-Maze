@@ -8,6 +8,7 @@ import java.awt.event.ItemListener;
 import java.awt.image.BufferedImage;
 import java.io.*;
 
+
 import equipements.*;
 import joueur.Joueur;
 import modele.PlanDeJeu;
@@ -73,7 +74,24 @@ public class PanneauStatusMilieu extends JPanel implements ItemListener{
 	}
 	
 	private void configurerPanEquipement() {
-		
+
+		try {
+			Font policeArsenal = Font.createFont(Font.TRUETYPE_FONT, new File("polices/Arsenal-Regular.ttf")).deriveFont(16f);
+			etiquetteDefense.setFont(policeArsenal);
+			titreCasque.setFont(policeArsenal);
+			comboBoxCasque.setFont(policeArsenal);
+			titreArmure.setFont(policeArsenal);
+			comboBoxArmure.setFont(policeArsenal);
+			etiquetteAttaque.setFont(policeArsenal);
+			titreArme.setFont(policeArsenal);
+			comboBoxArme.setFont(policeArsenal);
+			titrePotion.setFont(policeArsenal);
+			buttonPotion.setFont(policeArsenal);
+
+		}catch (IOException | FontFormatException e) {
+			e.printStackTrace();
+		}
+
 		panEquipement.setLayout(new GridLayout(10,1));
 		panEquipement.setBorder(new EmptyBorder(15, 15, 15, 15));
 		
