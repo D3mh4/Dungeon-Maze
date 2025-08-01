@@ -30,26 +30,28 @@ public class FenetreCombat extends JFrame implements MonObserver {
     private JScrollPane scrollPane;
     private JPanel panneauPrincipal;
 
+    private JLabel heroLabel;
+    private JLabel creatureLabel;
 
-    public FenetreCombat( Joueur joueur, AbstractCreature creature, GestionnaireCombat gestionnaireCombat) {
+    public FenetreCombat(Joueur joueur, AbstractCreature creature, GestionnaireCombat gestionnaireCombat) {
         this.joueur = joueur;
         this.creature = creature;
         this.gestionCombat = gestionnaireCombat;
 
         configurerFrame();
-        configurerHero();
+        configurerHero(false);
         configurerMessage();
-        configurerCreature();
+        configurerCreature(false);
 
         requestFocus();
         setVisible(true);
     }
 
-    private void configurerFrame(){
+    private void configurerFrame() {
         panneauPrincipal = (JPanel) getContentPane();
-        setLocation(600,300);
-        setSize(800,400);
-        setLayout(new GridLayout(0,3));
+        setLocation(600, 300);
+        setSize(800, 400);
+        setLayout(new GridLayout(0, 3));
 
         addWindowListener(new WindowAdapter() {
             @Override
@@ -59,19 +61,25 @@ public class FenetreCombat extends JFrame implements MonObserver {
         });
 
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        setAlwaysOnTop(true);
+        setResizable(false);
     }
 
-    private void configurerHero() {
-        BufferedImage image = null;
+    private void configurerHero(boolean estVaincu) {
         try {
-            image = ImageIO.read(new File("images/hero.png"));
+            BufferedImage image = ImageIO.read(new File(estVaincu ? "images/hero_vaincu.png" : "images/hero.png"));
+            if (heroLabel == null) {
+                heroLabel = new JLabel(new ImageIcon(image));
+                panneauPrincipal.add(heroLabel);
+            } else {
+                heroLabel.setIcon(new ImageIcon(image));
+            }
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            e.printStackTrace();
         }
-        panneauPrincipal.add(new JLabel(new ImageIcon(image)));
     }
 
-    private void configurerMessage(){
+    private void configurerMessage() {
         zoneTexte = new JTextArea(16, 20);
         zoneTexte.setEditable(false);
         scrollPane = new JScrollPane(zoneTexte);
@@ -79,28 +87,48 @@ public class FenetreCombat extends JFrame implements MonObserver {
         panneauPrincipal.add(scrollPane);
     }
 
-    private void configurerCreature() {
+    private void configurerCreature(boolean estVaincu) {
         try {
+            String cheminImage = "";
+
             if (creature instanceof Araigne) {
-                BufferedImage image = ImageIO.read(new File("images/spider.png"));
-                panneauPrincipal.add(new JLabel(new ImageIcon(image)));
-
+                cheminImage = estVaincu ? "images/spider_vaincu.png" : "images/spider.png";
             } else if (creature instanceof Minotaure) {
-                BufferedImage image = ImageIO.read(new File("images/minotaur.png"));
-                panneauPrincipal.add(new JLabel(new ImageIcon(image)));
-
+                cheminImage = estVaincu ? "images/minotaur_vaincu.png" : "images/minotaur.png";
             } else if (creature instanceof Dragon) {
-                BufferedImage image = ImageIO.read(new File("images/dragon.png"));
-                panneauPrincipal.add(new JLabel(new ImageIcon(image)));
+                cheminImage = estVaincu ? "images/dragon_vaincu.png" : "images/dragon.png";
             }
+
+            BufferedImage image = ImageIO.read(new File(cheminImage));
+            if (creatureLabel == null) {
+                creatureLabel = new JLabel(new ImageIcon(image));
+                panneauPrincipal.add(creatureLabel);
+            } else {
+                creatureLabel.setIcon(new ImageIcon(image));
+            }
+
         } catch (IOException e) {
             System.err.println("Erreur lors du chargement de l'image de la créature : " + e.getMessage());
-            panneauPrincipal.add(new JLabel("Image créature non trouvée"));
+            if (creatureLabel == null) {
+                creatureLabel = new JLabel("Image créature non trouvée");
+                panneauPrincipal.add(creatureLabel);
+            } else {
+                creatureLabel.setText("Image créature non trouvée");
+            }
         }
     }
 
     @Override
     public void avertir() {
-        zoneTexte.append(gestionCombat.getMsg());
+        String msg = gestionCombat.getMsg();
+        zoneTexte.setText(msg);
+
+        if (msg.contains("Joueur vaincu")) {
+            configurerHero(true);
+        }
+
+        if (msg.contains("Creature vaincu")) {
+            configurerCreature(true);
+        }
     }
 }

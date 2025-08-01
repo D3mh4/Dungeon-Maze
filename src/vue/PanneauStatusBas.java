@@ -12,12 +12,16 @@ import javax.swing.JTextArea;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.border.EmptyBorder;
 
+import modele.PlanDeJeu;
+
 public class PanneauStatusBas extends JPanel {
 
 	Dimension tailleEcran = Toolkit.getDefaultToolkit().getScreenSize();
 	
 	 private JTextArea zoneTexte;
 	 private JScrollPane scrollPane;
+	 
+	 PlanDeJeu planDeJeu = PlanDeJeu.getInstance();
 	
 	public PanneauStatusBas() {
 		configurerPanneau();
@@ -45,7 +49,7 @@ public class PanneauStatusBas extends JPanel {
 	}
 	
 	public void mettreAJoursInfo() {
-		
+		zoneTexte.setText(planDeJeu.getConsoleMessage());
 	}
 
 	

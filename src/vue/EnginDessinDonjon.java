@@ -23,7 +23,10 @@ import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics2D;
+import java.awt.Image;
 import java.util.Vector;
+
+import javax.swing.ImageIcon;
 
 import creature.AbstractCreature;
 import creature.Araigne;
@@ -33,6 +36,7 @@ import dongon.Case;
 import dongon.Configuration;
 import dongon.Donjon;
 import equipements.AbstractEquipement;
+import equipements.*;
 import joueur.Joueur;
 import physique.Direction;
 import physique.Position;
@@ -41,6 +45,20 @@ public class EnginDessinDonjon {
 
 	private Dimension centre;
 	private static int LONGUEUR_CASE = 30;
+	
+	private Image imageSol = new ImageIcon("images/DonjonSol.jpg").getImage();
+	private Image imageSortie = new ImageIcon("images/DonjonSortie.jpg").getImage();
+	
+	private Image imageArme = new ImageIcon("images/arme.png").getImage();
+	private Image imageArmure = new ImageIcon("images/armure.png").getImage();
+	private Image imageCasque = new ImageIcon("images/casque.png").getImage();
+	private Image imagePotion = new ImageIcon("images/potion.png").getImage();
+	
+	private Image imageJoueur = new ImageIcon("images/hero_pixel.png").getImage();
+
+	private Image imageSpider = new ImageIcon("images/spider_pixel.png").getImage();
+	private Image imageMinotaur = new ImageIcon("images/minotaur_pixel.png").getImage();
+	private Image imageDragon = new ImageIcon("images/dragon_pixel.png").getImage();
 	
 	@SuppressWarnings("unused")
 	private EnginDessinDonjon(){}
@@ -144,17 +162,32 @@ public class EnginDessinDonjon {
 
 		// si la case est la fin, l'affiche en bleu
 		if(cetteCase.getFin()){
-			g2.setColor(Color.BLUE);
-			g2.fillRect(xGauche, yTop, LONGUEUR_CASE, LONGUEUR_CASE);
-		}
+			g2.drawImage(imageSortie, xGauche, yTop, LONGUEUR_CASE, LONGUEUR_CASE, null);
+		}else {
+	        g2.drawImage(imageSol, xGauche, yTop, LONGUEUR_CASE, LONGUEUR_CASE, null);
+	    }
 
 		// si cette case est découvert, affiche les murs selon le cas
 		if(cetteCase.getDecouverte()){
 
-			g2.setColor(Color.GRAY);
-			g2.setStroke(new BasicStroke(7));
-			
-			// mur haut, bas, gauche, droit
+			g2.setColor(Color.decode("#4F4D47"));
+			g2.setStroke(new BasicStroke(6));
+			if(cetteCase.getVoisin(Direction.HAUT) == null){
+				g2.drawLine(xGauche, yTop, xDroit, yTop);
+			}
+			if(cetteCase.getVoisin(Direction.BAS) == null){
+				g2.drawLine(xGauche, yBas, xDroit, yBas);
+			}
+			if(cetteCase.getVoisin(Direction.DROITE) == null){
+				g2.drawLine(xDroit, yTop, xDroit, yBas);
+			}
+			if(cetteCase.getVoisin(Direction.GAUCHE) == null){
+				g2.drawLine(xGauche, yTop, xGauche, yBas);
+			}
+
+			// Trait blanc mince (au-dessus)
+			g2.setColor(Color.decode("#C9C5BA"));
+			g2.setStroke(new BasicStroke(2));
 			if(cetteCase.getVoisin(Direction.HAUT) == null){
 				g2.drawLine(xGauche, yTop, xDroit, yTop);
 			}
@@ -170,7 +203,7 @@ public class EnginDessinDonjon {
 
 		}else{
 			g2.setColor(Color.BLACK);
-			g2.fillRect(xGauche, yTop, LONGUEUR_CASE, LONGUEUR_CASE);
+			g2.fillRect(xGauche, yTop, LONGUEUR_CASE + 1, LONGUEUR_CASE );
 		}
 		
 	}
@@ -185,14 +218,11 @@ public class EnginDessinDonjon {
 		
 		// affiche la créature en fonction du type de la classe
 		if(creature instanceof Araigne){
-			g2.setColor(Color.CYAN);
-			g2.fillOval(posCreature.getJ()-15, posCreature.getI()-15, LONGUEUR_CASE, LONGUEUR_CASE);
+			g2.drawImage(imageSpider,posCreature.getJ()-15, posCreature.getI()-15, LONGUEUR_CASE, LONGUEUR_CASE,null);
 		}else if(creature instanceof Dragon){
-			g2.setColor(Color.BLUE);
-			g2.fillOval(posCreature.getJ()-15, posCreature.getI()-15, LONGUEUR_CASE, LONGUEUR_CASE);
+			g2.drawImage(imageDragon,posCreature.getJ()-15, posCreature.getI()-15, LONGUEUR_CASE, LONGUEUR_CASE,null);
 		}else if(creature instanceof Minotaure){
-			g2.setColor(Color.GRAY);
-			g2.fillOval(posCreature.getJ()-15, posCreature.getI()-15, LONGUEUR_CASE, LONGUEUR_CASE);
+			g2.drawImage(imageMinotaur,posCreature.getJ()-15, posCreature.getI()-15, LONGUEUR_CASE, LONGUEUR_CASE,null);
 		}
 	}
 
@@ -205,7 +235,16 @@ public class EnginDessinDonjon {
 	private void dessinerEquipement(Graphics2D g2, Position pos, AbstractEquipement equipement){
 		
 		g2.setColor(Color.YELLOW);
-		g2.fillOval(pos.getJ()-15, pos.getI()-15, LONGUEUR_CASE, LONGUEUR_CASE);
+		
+		if(equipement instanceof Casque){
+			g2.drawImage(imageCasque, pos.getJ()-15, pos.getI()-15, LONGUEUR_CASE, LONGUEUR_CASE, null);
+		}else if(equipement instanceof Arme){
+			g2.drawImage(imageArme, pos.getJ()-15, pos.getI()-15, LONGUEUR_CASE, LONGUEUR_CASE, null);
+		}else if(equipement instanceof Armure){
+			g2.drawImage(imageArmure, pos.getJ()-15, pos.getI()-15, LONGUEUR_CASE, LONGUEUR_CASE, null);
+		}else if(equipement instanceof Potion){
+			g2.drawImage(imagePotion, pos.getJ()-15, pos.getI()-15, LONGUEUR_CASE, LONGUEUR_CASE, null);
+		}
 		
 	}
 
@@ -219,7 +258,7 @@ public class EnginDessinDonjon {
 	private void dessinerJoueur(Graphics2D g2, Position posJoueur){
 
 		g2.setColor(Color.ORANGE);
-		g2.fillOval(posJoueur.getJ()-LONGUEUR_CASE/2, posJoueur.getI()-LONGUEUR_CASE/2, LONGUEUR_CASE, LONGUEUR_CASE);
+		g2.drawImage(imageJoueur ,posJoueur.getJ()-LONGUEUR_CASE/2, posJoueur.getI()-LONGUEUR_CASE/2, LONGUEUR_CASE, LONGUEUR_CASE, null);
 	}
 	
 }

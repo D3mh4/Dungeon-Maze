@@ -25,6 +25,7 @@ import equipements.Arme;
 import equipements.Armure;
 import equipements.Casque;
 import equipements.Potion;
+import modele.PlanDeJeu;
 import personnage.AbstractPersonnage;
 import physique.Direction;
 import physique.Position;
@@ -90,6 +91,7 @@ public class Joueur extends AbstractPersonnage {
 		if(armeEquipe != null) {
 			bonusAttaque += armeEquipe.getValeur();
 		}
+		
 	}
 	
 	public void utiliserPotion() {
@@ -100,6 +102,8 @@ public class Joueur extends AbstractPersonnage {
 				break;
 			}
 		}
+		PlanDeJeu.getInstance().addConsoleMessage("Le joueur utilise une potion.");
+		PlanDeJeu.getInstance().avertir();
 	}
 
 	
@@ -156,6 +160,7 @@ public class Joueur extends AbstractPersonnage {
 	public void ramasserEquipement(AbstractEquipement equipement) {
 		equipement.setAuSol(false);
 		this.equipements.add(equipement);
+		PlanDeJeu.getInstance().addConsoleMessage("Le joueur ramasse un équipement : " + equipement.toString());
 	}
 	
 

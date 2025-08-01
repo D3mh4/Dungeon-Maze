@@ -1,5 +1,7 @@
 package modele;
 
+import java.util.ArrayList;
+
 /**
  * Le plan de jeu est la classe qui supporte le modèle du programme.
  * Il contient:
@@ -57,6 +59,8 @@ public class PlanDeJeu extends MonObservable implements MonObserver, Runnable {
 	
 	private static final PlanDeJeu instance = new PlanDeJeu();
 	private static Thread t;
+	
+	private ArrayList<String> console = new ArrayList<String>();
 	
 	/**
 	 * constructeur du plan de jeu
@@ -120,7 +124,20 @@ public class PlanDeJeu extends MonObservable implements MonObserver, Runnable {
 		return nbCreatureTuee;
 	}
 	
+	public void addConsoleMessage(String message) {
+		console.add(message);
+		this.avertirLesObservers();
+	}
 
+	public String getConsoleMessage() {
+		 String str = "";
+	        for (int i = 0; i < console.size(); ++i){
+	            str += console.get(i) + "\n";
+	        }
+
+	        return str;
+	}
+	
 	/**
 	 * méthode pour obtenir une référence sur le joueur
 	 * @return référence au joueur
@@ -201,7 +218,7 @@ public class PlanDeJeu extends MonObservable implements MonObserver, Runnable {
 			// Tire une position aléatoire
 			Position posAlea = this.donjon.getPositionAlea();
 		
-			switch(i){
+			switch(type){
 			
 			case 0:
 				cetEquipement = new Arme(posAlea);
@@ -376,6 +393,9 @@ public class PlanDeJeu extends MonObservable implements MonObserver, Runnable {
 		config.setConfig(Configuration.NB_COLONNES,nbCols+1);
 		config.setConfig(Configuration.NB_LIGNES,nbLignes+1);
 		config.setConfig(Configuration.NB_CREATURES,nbCreatures+2);
+		
+		//Ajoute un message dans la console pour annoncer la fin du niveau
+		PlanDeJeu.getInstance().addConsoleMessage("Fin de niveau !");
 		
 		// lance un nouveau niveau
 		nouveauNiveau();

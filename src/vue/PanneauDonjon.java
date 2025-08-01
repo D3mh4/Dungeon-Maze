@@ -17,9 +17,11 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.Image;
 import java.util.Observable;
 import java.util.Observer;
 
+import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
 import dongon.Donjon;
@@ -35,6 +37,8 @@ public class PanneauDonjon extends JPanel implements MonObserver{
 	EnginDessinDonjon enginDessinDonjon;
 	
 	PlanDeJeu planDeJeu = PlanDeJeu.getInstance();
+	
+	private Image background = new ImageIcon("images/Background.jpg").getImage();
 	
 	/**
 	 * Constructeur
@@ -65,6 +69,11 @@ public class PanneauDonjon extends JPanel implements MonObserver{
 		super.paintComponent(g);
 		// efface l'écran
 		g2.clearRect(0, 0, taille.width, taille.height);
+		
+		//Couleur de fond
+		g2.setColor(Color.BLACK);
+		g2.drawImage(background,0, 0, (taille.width/3)*2, taille.height, null);
+		
 		// re-dessine les éléments du jeu
 		enginDessinDonjon.dessinerDonjon(g2, planDeJeu.getDonjon());
 		enginDessinDonjon.dessinerCreatures(g2, planDeJeu.getCreatures());

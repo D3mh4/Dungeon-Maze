@@ -44,7 +44,7 @@ public class ControleurClavier implements KeyListener{
 		Joueur joueurControlle =  planDeJeu.getJoueur();
 		
 		// s'assure qu'un joueur a été initialisé
-		if(joueurControlle != null){
+		if(joueurControlle != null && !planDeJeu.estEnCombat()){
 			
 			int keyCode = e.getKeyCode();
 			switch(keyCode){

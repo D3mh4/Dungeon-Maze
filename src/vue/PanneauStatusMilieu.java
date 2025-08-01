@@ -1,6 +1,10 @@
 package vue;
 
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.awt.image.BufferedImage;
 import java.io.*;
 
@@ -12,7 +16,7 @@ import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 
-public class PanneauStatusMilieu extends JPanel {
+public class PanneauStatusMilieu extends JPanel implements ItemListener{
 
 	JPanel panHero = new JPanel();
 	JPanel panEquipement = new JPanel();
@@ -76,18 +80,31 @@ public class PanneauStatusMilieu extends JPanel {
 		panEquipement.add(etiquetteDefense);
 		panEquipement.add(titreCasque);
 		panEquipement.add(comboBoxCasque);
+		comboBoxCasque.addItemListener(this);
 		panEquipement.add(titreArmure);
 		panEquipement.add(comboBoxArmure);
+		comboBoxArmure.addItemListener(this);
 		
 		panEquipement.add(etiquetteAttaque);
 		panEquipement.add(titreArme);
 		panEquipement.add(comboBoxArme);
+		comboBoxArme.addItemListener(this);
 		
 		panEquipement.add(titrePotion);
 		panEquipement.add(buttonPotion);
+		buttonPotion.addActionListener(new ActionListener() {
+			 @Override
+		        public void actionPerformed(ActionEvent e) {
+		            joueur.utiliserPotion();
+		            mettreAJoursInfo();
+		        }
+		});
+			;
 		buttonPotion.setEnabled(false);
 
 	}
+	
+	
 	
 	public void mettreAJoursInfo() {
 		etiquetteAttaque.setText("Attaque total : " + joueur.getForce());
@@ -120,5 +137,14 @@ public class PanneauStatusMilieu extends JPanel {
 		titrePotion.setText("Nombre de potion : " + nbPotions);
 		
 		buttonPotion.setEnabled(nbPotions > 0);
+	}
+
+	@Override
+	public void itemStateChanged(ItemEvent e) {
+		if (e.getStateChange() == ItemEvent.SELECTED) {
+				Object item = e.getItem();
+				joueur.equiper((AbstractEquipement) item);
+			}
+		
 	}
 }

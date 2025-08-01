@@ -70,6 +70,8 @@ public class GestionnaireCombat extends MonObservable implements Runnable{
 	 */
 	public void run() {
 		
+		PlanDeJeu.getInstance().addConsoleMessage("Début de combat.");
+		
 		do{
 			// hero donne le premier coup
 			int forceCoupDonne = hero.getForce();
@@ -102,6 +104,7 @@ public class GestionnaireCombat extends MonObservable implements Runnable{
 				
 				// si la creature est morte, c'est la fin du combat
 				messages.add("Creature vaincu");
+				PlanDeJeu.getInstance().addConsoleMessage("Combat gagné !");
 				PlanDeJeu.getInstance().addCreatureTuee();
 				this.avertirLesObservers();
 			}
@@ -118,6 +121,7 @@ public class GestionnaireCombat extends MonObservable implements Runnable{
 				
 				// ajoute un message
 				messages.add("Joueur vaincu");
+				PlanDeJeu.getInstance().addConsoleMessage("Combat perdu.");
 				this.avertirLesObservers();
 			}	
 		
@@ -140,7 +144,6 @@ public class GestionnaireCombat extends MonObservable implements Runnable{
 	 */
 	public void combatTermine(){
 		combatEnCours = false;
-		this.detacherLesObserver();
 	}
 
 	/**
@@ -153,8 +156,6 @@ public class GestionnaireCombat extends MonObservable implements Runnable{
         for (int i = 0; i < messages.size(); ++i){
             str += messages.get(i) + "\n";
         }
-        
-        messages.clear();
 
         return str;
 	}

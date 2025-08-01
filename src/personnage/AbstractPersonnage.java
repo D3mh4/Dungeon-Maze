@@ -14,6 +14,7 @@ import java.util.Observable;
 
 import dongon.AbstractObjet;
 import dongon.Case;
+import modele.PlanDeJeu;
 import observer.MonObservable;
 
 public abstract class AbstractPersonnage extends AbstractObjet {
@@ -77,6 +78,8 @@ public abstract class AbstractPersonnage extends AbstractObjet {
 		if(forceCoup > 0){
 			pointDeVie -= forceCoup;
 		}
+		
+		PlanDeJeu.getInstance().avertir();
 	}
 
 	public boolean estVivant() {
