@@ -7,7 +7,6 @@ import java.awt.event.WindowEvent;
 
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-
 import interfaceUtilisateur.ControleurClavier;
 import modele.PlanDeJeu;
 
@@ -28,6 +27,7 @@ public class CadrePrincipal extends JFrame implements Runnable {
 	Dimension tailleEcran = Toolkit.getDefaultToolkit().getScreenSize();
 	ControleurClavier clavier = new ControleurClavier();
 	PlanDeJeu planDeJeu = PlanDeJeu.getInstance();
+	
 	/**
 	 * Constructeur, initialise la référence au modèle.
 	 * @param problemManager
@@ -50,7 +50,7 @@ public class CadrePrincipal extends JFrame implements Runnable {
     	setContentPane(panPrincipal);
     	
     	panPrincipal.addKeyListener(clavier);
-    	panPrincipal.panDonjon.addKeyListener(clavier);
+    	panPrincipal.panneauDonjon.addKeyListener(clavier);
 
     	// configure le Frame
     	configurerFrame();

@@ -14,6 +14,8 @@ import java.util.ArrayList;
  * Le plan de jeu est implémenté en Lazy Singleton
  * 
  * @author Fred Simard | ETS
+ * @author Ahmed El Moudden
+ * @author Marie-Claire Lajeunesse
  * @version ETE 2018 - TP2
  */
 
@@ -86,6 +88,10 @@ public class PlanDeJeu extends MonObservable implements MonObserver, Runnable {
 		return this.donjon;
 	}
 
+	/**
+	 * Retourne le temps écoulé depuis le début de la partie en secondes.
+	 * @return temps de jeu en secondes
+	 */
 	public int getTempsJoueEnSecondes() {
 	    return (int)((System.currentTimeMillis() - startTime) / 1000);
 	}
@@ -115,20 +121,35 @@ public class PlanDeJeu extends MonObservable implements MonObserver, Runnable {
 		return this.joueur;
 	}
 	
+	/**
+	 * Incrémente le nombre total de créatures tuées et notifie les observers.
+	 */
 	public void addCreatureTuee(){
 		nbCreatureTuee++;
 		this.avertirLesObservers();
 	}
 	
+	/**
+	 * Retourne le nombre total de créatures tuées par le joueur.
+	 * @return nombre de créatures tuées
+	 */
 	public int getNbCreatureTuee(){
 		return nbCreatureTuee;
 	}
 	
+	/**
+	 * Ajoute un message dans la console du jeu et notifie les observers.
+	 * @param message message à ajouter
+	 */
 	public void addConsoleMessage(String message) {
 		console.add(message);
 		this.avertirLesObservers();
 	}
 
+	/**
+	 * Retourne tous les messages de la console sous forme de String.
+	 * @return texte complet de la console
+	 */
 	public String getConsoleMessage() {
 		 String str = "";
 	        for (int i = 0; i < console.size(); ++i){
@@ -413,6 +434,10 @@ public class PlanDeJeu extends MonObservable implements MonObserver, Runnable {
 		nouveauNiveau();
 	}
 
+	/**
+	 * Retourne le gestionnaire de combat associé au plan de jeu.
+	 * @return gestionnaire de combat
+	 */
 	public GestionnaireCombat getGestionnaireCombat(){
 		return gestCombat;
 	}
