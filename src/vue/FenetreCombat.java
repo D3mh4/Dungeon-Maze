@@ -30,7 +30,6 @@ import java.io.IOException;
 @SuppressWarnings("serial")
 public class FenetreCombat extends JFrame implements MonObserver {
 
-    private Joueur joueur;
     private AbstractCreature creature;
     private GestionnaireCombat gestionCombat;
 
@@ -50,7 +49,6 @@ public class FenetreCombat extends JFrame implements MonObserver {
      * @param gestionnaireCombat le gestionnaire qui gère le combat
      */
     public FenetreCombat(Joueur joueur, AbstractCreature creature, GestionnaireCombat gestionnaireCombat) {
-        this.joueur = joueur;
         this.creature = creature;
         this.gestionCombat = gestionnaireCombat;
 
