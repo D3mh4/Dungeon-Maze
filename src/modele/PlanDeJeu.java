@@ -241,11 +241,11 @@ public class PlanDeJeu extends MonObservable implements MonObserver, Runnable {
 		// vide le vecteur, s'il contient des créatures
 		this.equipements.removeAllElements();
 		
-		// initialise le nombre de créatures demandées
+		// initialise le nombre d'équipement demandées
 		for(int i=0;i<config.getConfig(Configuration.NB_EQUIPEMENTS);i++){
 
-			// tire un type de créature aléatoirement
-			int type = rand.nextInt((int)config.getConfig(Configuration.NB_TYPES_CREATURES));
+			// tire un type d'équipement aléatoirement
+			int type = rand.nextInt((int)config.getConfig(Configuration.NB_EQUIPEMENTS));
 			AbstractEquipement cetEquipement = null;
 
 			// Tire une position aléatoire

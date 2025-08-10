@@ -133,14 +133,14 @@ public class PanneauEquipement extends JPanel implements ItemListener {
         comboBoxArmure.addItem(joueur.getArmureEquipe());
         comboBoxArme.addItem(joueur.getArmeEquipe());
 
-        for (AbstractEquipement equipement : joueur.getEquipements()) {
-            if (equipement instanceof Casque) {
-                comboBoxCasque.addItem((Casque) equipement);
-            } else if (equipement instanceof Armure) {
-                comboBoxArmure.addItem((Armure) equipement);
-            } else if (equipement instanceof Arme) {
-                comboBoxArme.addItem((Arme) equipement);
-            } else if (equipement instanceof Potion) {
+        for (int i = 0; i < joueur.getEquipements().size(); i++) {
+            if (joueur.getEquipements().get(i) instanceof Casque) {
+                comboBoxCasque.addItem((Casque) joueur.getEquipements().get(i));
+            } else if (joueur.getEquipements().get(i) instanceof Armure) {
+                comboBoxArmure.addItem((Armure) joueur.getEquipements().get(i));
+            } else if (joueur.getEquipements().get(i) instanceof Arme) {
+                comboBoxArme.addItem((Arme) joueur.getEquipements().get(i));
+            } else if (joueur.getEquipements().get(i) instanceof Potion) {
                 nbPotions++;
             }
         }
