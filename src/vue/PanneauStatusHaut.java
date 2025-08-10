@@ -70,10 +70,13 @@ public class PanneauStatusHaut extends JPanel {
 		timer = new Timer(1000, new ActionListener() {
 		    @Override
 		    public void actionPerformed(ActionEvent e) {
-		    	etiquetteTemps.setText("Temps de jeu : " + planDeJeu.getTempsJoueEnSecondes() + " secondes");
+		        int secondesTotal = planDeJeu.getTempsJoueEnSecondes();
+		        int minutes = secondesTotal / 60;
+		        int secondes = secondesTotal % 60;
+		        etiquetteTemps.setText(String.format("Temps de jeu : %d:%02d", minutes, secondes));
 		    }
 		});
-		
+
 		timer.start();
 	}
 	

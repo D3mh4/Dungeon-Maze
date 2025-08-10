@@ -7,7 +7,9 @@ package vue;
  * - le panneau du donjon
  * 
  * @author Fred Simard | ETS
- * @version ETE 2018 - TP2
+ * @author Ahmed El Moudden
+ * @author Marie-Claire Lajeunesse
+ * @version ETE 2025 - Devoir 2
  */
 
 import java.awt.BorderLayout;

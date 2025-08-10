@@ -64,6 +64,7 @@ public class PlanDeJeu extends MonObservable implements MonObserver, Runnable {
 	
 	private ArrayList<String> console = new ArrayList<String>();
 	
+	
 	/**
 	 * constructeur du plan de jeu
 	 */
@@ -71,6 +72,7 @@ public class PlanDeJeu extends MonObservable implements MonObserver, Runnable {
 		partieEnCours = true;
 		nouveauNiveau();
 	}
+	
 
 	/**
 	 * méthode pour obtenir une référence au plan de jeu
@@ -80,6 +82,7 @@ public class PlanDeJeu extends MonObservable implements MonObserver, Runnable {
 		return instance;
 	}
 	
+	
 	/**
 	 * méthode pour obtenir une référence au donjon
 	 * @return référence au donjon
@@ -87,6 +90,7 @@ public class PlanDeJeu extends MonObservable implements MonObserver, Runnable {
 	public Donjon getDonjon(){
 		return this.donjon;
 	}
+	
 
 	/**
 	 * Retourne le temps écoulé depuis le début de la partie en secondes.
@@ -95,6 +99,7 @@ public class PlanDeJeu extends MonObservable implements MonObserver, Runnable {
 	public int getTempsJoueEnSecondes() {
 	    return (int)((System.currentTimeMillis() - startTime) / 1000);
 	}
+	
 	
     /**
      * méthode qui permet de déterminer si un combat est en cours.
@@ -113,6 +118,7 @@ public class PlanDeJeu extends MonObservable implements MonObserver, Runnable {
 		return this.creatures;
 	}
 
+	
 	/**
 	 * méthode pour obtenir une référence sur le joueur
 	 * @return référence au joueur
@@ -120,6 +126,7 @@ public class PlanDeJeu extends MonObservable implements MonObserver, Runnable {
 	public Joueur getJoueur(){
 		return this.joueur;
 	}
+	
 	
 	/**
 	 * Incrémente le nombre total de créatures tuées et notifie les observers.
@@ -129,6 +136,7 @@ public class PlanDeJeu extends MonObservable implements MonObserver, Runnable {
 		this.avertirLesObservers();
 	}
 	
+	
 	/**
 	 * Retourne le nombre total de créatures tuées par le joueur.
 	 * @return nombre de créatures tuées
@@ -136,6 +144,7 @@ public class PlanDeJeu extends MonObservable implements MonObserver, Runnable {
 	public int getNbCreatureTuee(){
 		return nbCreatureTuee;
 	}
+	
 	
 	/**
 	 * Ajoute un message dans la console du jeu et notifie les observers.
@@ -146,6 +155,7 @@ public class PlanDeJeu extends MonObservable implements MonObserver, Runnable {
 		this.avertirLesObservers();
 	}
 
+	
 	/**
 	 * Retourne tous les messages de la console sous forme de String.
 	 * @return texte complet de la console
@@ -159,6 +169,7 @@ public class PlanDeJeu extends MonObservable implements MonObserver, Runnable {
 	        return str;
 	}
 	
+	
 	/**
 	 * méthode pour obtenir une référence sur le joueur
 	 * @return référence au joueur
@@ -167,6 +178,7 @@ public class PlanDeJeu extends MonObservable implements MonObserver, Runnable {
 		return this.equipements;
 	}
 
+	
 	/**
 	 * méthode pour initialiser le vecteur de créatures
 	 */
@@ -263,6 +275,8 @@ public class PlanDeJeu extends MonObservable implements MonObserver, Runnable {
 		}
 		
 	}
+	
+	
 	/**
 	 * méthode pour initialiser le joueur
 	 */
@@ -277,6 +291,7 @@ public class PlanDeJeu extends MonObservable implements MonObserver, Runnable {
 		
 	}
 
+	
 	@Override
 	/**
 	 * callback implémenté par l'observer
@@ -290,6 +305,7 @@ public class PlanDeJeu extends MonObservable implements MonObserver, Runnable {
 		this.avertirLesObservers();
 	}
 
+	
 	@Override
 	/**
 	 * implémente la méthode run de Runnable
@@ -316,6 +332,7 @@ public class PlanDeJeu extends MonObservable implements MonObserver, Runnable {
 			this.avertirLesObservers();
 		}
 	}
+	
 	
 	/**
 	 * méthode qui valide les règles du jeu
@@ -364,6 +381,7 @@ public class PlanDeJeu extends MonObservable implements MonObserver, Runnable {
 	
 	}
 	
+	
 	/**
 	 * méthode qui lance un nouveau niveau
 	 */
@@ -389,6 +407,7 @@ public class PlanDeJeu extends MonObservable implements MonObserver, Runnable {
 		
 		this.avertirLesObservers();
 	}
+	
 
 	/**
 	 * informatrice pour savoir le niveau courant
@@ -396,6 +415,7 @@ public class PlanDeJeu extends MonObservable implements MonObserver, Runnable {
 	public int getNiveau(){
 		return niveauCourant;
 	}
+	
 	
 	/**
 	 * méthode qui gère une partie gagné
@@ -421,6 +441,7 @@ public class PlanDeJeu extends MonObservable implements MonObserver, Runnable {
 		// lance un nouveau niveau
 		nouveauNiveau();
 	}
+	
 
 	/**
 	 * gestion d'une partie perdu
@@ -434,12 +455,12 @@ public class PlanDeJeu extends MonObservable implements MonObserver, Runnable {
 		nouveauNiveau();
 	}
 
+	
 	/**
 	 * Retourne le gestionnaire de combat associé au plan de jeu.
 	 * @return gestionnaire de combat
 	 */
 	public GestionnaireCombat getGestionnaireCombat(){
 		return gestCombat;
-	}
-		
+	}	
 }

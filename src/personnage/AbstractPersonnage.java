@@ -27,15 +27,19 @@ public abstract class AbstractPersonnage extends AbstractObjet {
 	protected int pointDeVieMax=100;
 
 	/**
+	 * constructeur par défaut
+	 */
+	public AbstractPersonnage(){}
+	
+	
+	/**
 	 * constructeur
 	 * @param pos, position I,J dans le labyrinthe
 	 */
-	
-	public AbstractPersonnage(){}
-	
 	public AbstractPersonnage(Position pos){
 		this.pos = pos;
 	}
+	
 	
 	/**
 	 * méthode pour déplacer un personnage
@@ -56,22 +60,43 @@ public abstract class AbstractPersonnage extends AbstractObjet {
 		}
 	}
 
+	
+	/**
+	 * Retourne la valeur de defense de l'armure actuelle du personnage.
+	 */
 	public int getArmure() {
 		return armure;
 	}
 
+	
+	/**
+	 * Retourne la force d'attaque du personnage.
+	 */
 	public int getForce() {
 		return force + bonusAttaque;
 	}
 
+	
+	/**
+	 * Retourne les points de vie actuels du personnage.
+	 */
 	public int getPointDeVie() {
 		return pointDeVie;
 	}
 	
+	
+	/**
+	 * Retourne les points de vie maximum que le personnage peut avoir.
+	 */
 	public int getPointDeVieMax() {
 		return pointDeVieMax;
 	}
 	
+	
+	/**
+	 * Inflige un coup au personnage, en tenant compte de son armure.
+	 * @param forceCoup force du coup reçu
+	 */
 	public void recoitCoup(int forceCoup) {
 		forceCoup -= armure;
 		
@@ -82,6 +107,10 @@ public abstract class AbstractPersonnage extends AbstractObjet {
 		PlanDeJeu.getInstance().avertir();
 	}
 
+	
+	/**
+	 * Indique si le personnage est toujours en vie.
+	 */
 	public boolean estVivant() {
 		return (pointDeVie>0);
 	}
