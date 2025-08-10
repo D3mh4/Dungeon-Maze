@@ -4,7 +4,9 @@ package joueur;
  * Définition du Joueur.
  * 
  * @author Fred Simard | ETS
- * @version ETE 2018 - TP2
+ * @author Ahmed El Moudden
+ * @author Marie-Claire Lajeunesse
+ * @version ÉTÉ 2025 - Devoir 2
  */
 
 import java.util.Vector;
@@ -39,6 +41,7 @@ public class Joueur extends AbstractPersonnage {
 	private Armure armureEquipe;
 	private Arme armeEquipe;
 
+	
 	/**
 	 * Construceur par paramètre
 	 * @param pos, position du joueur
@@ -47,23 +50,49 @@ public class Joueur extends AbstractPersonnage {
 		pointDeVie=100;
 		pointDeVieMax=100;
 	}
-
+	
+	
+	/**
+	 * Retourne la liste des équipements possédés par le joueur.
+	 * @return liste des équipements
+	 */
 	public Vector<AbstractEquipement> getEquipements(){
 		return this.equipements;
 	}
 	
+	
+	/**
+	 * Retourne le casque actuellement équipé par le joueur.
+	 * @return casque équipé, ou null si aucun
+	 */
 	public Casque getCasqueEquipe() {
 		return this.casqueEquipe;
 	}
 
+	
+	/**
+	 * Retourne l’armure actuellement équipée par le joueur.
+	 * @return armure équipée, ou null si aucune
+	 */
 	public Armure getArmureEquipe() {
 		return this.armureEquipe;
 	}
 
+	
+	/**
+	 * Retourne l’arme actuellement équipée par le joueur.
+	 * @return arme équipée, ou null si aucune
+	 */
 	public Arme getArmeEquipe() {
 		return this.armeEquipe;
 	}
 	
+	
+	/**
+	 * Équipe un objet donné (casque, armure ou arme) et met à jour
+	 * les bonus de défense et d’attaque du joueur.
+	 * @param equipement équipement à équiper
+	 */
 	public void equiper(AbstractEquipement equipement) {
 		
 		if(equipement instanceof Casque) {
@@ -94,6 +123,11 @@ public class Joueur extends AbstractPersonnage {
 		
 	}
 	
+	
+	/**
+	 * Utilise une potion de l’inventaire si disponible.
+	 * Restaure les points de vie au maximum et supprime la potion utilisée.
+	 */
 	public void utiliserPotion() {
 		for(int i = 0; i < equipements.size(); i++) {
 			if(equipements.get(i) instanceof Potion) {
@@ -102,6 +136,8 @@ public class Joueur extends AbstractPersonnage {
 				break;
 			}
 		}
+		
+		//ajoute l'action dans la console du jeu
 		PlanDeJeu.getInstance().addConsoleMessage("Le joueur utilise une potion.");
 		PlanDeJeu.getInstance().avertir();
 	}
@@ -135,6 +171,7 @@ public class Joueur extends AbstractPersonnage {
 		mettreAJourVision();
 	}
 	
+	
 	/**
 	 * méthode qui mets à jour la vision
 	 */
@@ -157,9 +194,17 @@ public class Joueur extends AbstractPersonnage {
 		}
 	}
 	
+	
+	/**
+	 * Ajoute un équipement à l’inventaire du joueur et
+	 * marque cet équipement comme ramassé.
+	 * @param equipement équipement à ramasser
+	 */
 	public void ramasserEquipement(AbstractEquipement equipement) {
 		equipement.setAuSol(false);
 		this.equipements.add(equipement);
+		
+		//ajoute l'action dans la console du jeu
 		PlanDeJeu.getInstance().addConsoleMessage("Le joueur ramasse un équipement : " + equipement.toString());
 	}
 	
